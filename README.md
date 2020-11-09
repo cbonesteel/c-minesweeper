@@ -8,7 +8,7 @@ program is a basic command line game of minesweeper with user input being text i
 
 The minesweeper game will allow for custom board sizes and difficulty, difficulty being
 defined by mine density. All user inputs will be used in the form [letter] [x] [y]. The letter
-will define the specific game command, flag, reveil, help, etc., with x and y being the
+will define the specific game command, flag, reveal, help, etc., with x and y being the
 coordinate to be executed on if the command requires it.
 
 ## Installing this Repository

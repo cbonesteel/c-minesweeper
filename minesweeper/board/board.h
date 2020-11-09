@@ -7,10 +7,11 @@
 #include <stdbool.h>
 
 struct Board {
-  int **mine_pointer;
-  // int **board_pointer;
+  bool **mine_pointer;
+  int **board_pointer;
 }; // board
 
-bool buildBoard(int width, int height, struct Board *board);
-  
+bool buildBoardArrays(int width, int height, struct Board *board); // Default Constructor
+void destructBoard(struct Board *board); // Deconstructor
+
 #endif // BOARD_H

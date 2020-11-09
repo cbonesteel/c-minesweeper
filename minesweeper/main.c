@@ -6,7 +6,7 @@
 int main() {
   struct Board board;
   
-  buildBoard(6, 4, &board);
+  buildBoardArrays(6, 4, &board);
 
   
   for (int i = 0; i < 4; ++i) {
@@ -16,11 +16,15 @@ int main() {
     printf("\n");
   } // for
 
+  printf("\n");
+  
   for (int i = 0; i < 4; ++i) {
-    free(board.mine_pointer[i]);
+    for (int j = 0; j < 6; ++j) {
+      printf("%d ", board.board_pointer[i][j]);
+    } // for
+    printf("\n");
   } // for
-
-  free(board.mine_pointer);
+  
   
   return 0;
 } // main

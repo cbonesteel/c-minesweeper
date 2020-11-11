@@ -1,3 +1,7 @@
+/**
+ * @file board.h
+ * @brief The header for board.
+ */
 #ifndef BOARD_H
 #define BOARD_H
 

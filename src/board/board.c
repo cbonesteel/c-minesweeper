@@ -1,3 +1,26 @@
+/**
+ * @file board.c
+ * @brief Implementation for the game board functions.
+ *
+ * Source code for the board. This fundamentaly represents the
+ * functions that would be members of the board struct. All
+ * functions take in a board to process all actions on.
+ *
+ * Design Philosophy:
+ *
+ * A board will initially be built and all three 2D arrays will initialized to
+ * false or '*'s, depending on the data type. The "game" can then generate a 
+ * board and place mines on the mine_pointer array. The game will take place
+ * and be displayed entirely from the board_pointer array. The mine_pointer
+ * array is to keep track of the mines without modifying their position on
+ * accident. The reveal_pointer array is to keep track of positions that have
+ * already beenrevealed by the player to avoid accidental duplicate reveal
+ * functions.
+ *
+ * @author Cameron Bonesteel
+ * @date Novemeber 8, 2020
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -95,6 +118,7 @@ void board__destruct(struct Board *board) {
  *
  * @param x the x coordinate
  * @param y the y coordinate
+ * @param board the board to be modified
  *
  * @return true if flag is successful; false otherwise
  */
@@ -117,6 +141,7 @@ bool board__flag(int x, int y, struct Board *board) {
  *
  * @param x the x coordinate
  * @param y the y coordinate
+ * @param board the board to be modified
  * 
  * @return true if reveal is succesful; false otherwise
  */

@@ -1,3 +1,19 @@
+/**
+ * @file game.c
+ * @brief Implementation for the game functions.
+ *
+ * Source code for the game. This contains all the functions
+ * needed to run the game, expect command processes.
+ *
+ * Design Philosophy:
+ *
+ * This file contains the functions needed to run the game. This includes
+ * the game loop, print statements, and tunnels to the command processors.
+ *
+ * @author Cameron Bonesteel
+ * @date Novemeber 11, 2020
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

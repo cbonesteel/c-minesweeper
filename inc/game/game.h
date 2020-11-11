@@ -1,3 +1,8 @@
+/**
+ * @file game.h
+ * @brief The header for game.
+ */
+
 #ifndef GAME_H
 #define GAME_H
 

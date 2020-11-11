@@ -1,3 +1,8 @@
+/**
+ * @file command_processor.h
+ * @brief The header for command processor.
+ */
+
 #ifndef COMMAND_PROCESSOR_H
 #define COMMAND_PROCESSOR_H
 

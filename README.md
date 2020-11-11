@@ -81,7 +81,8 @@ rm -rf build minesweeper-game
 ### Milestone 0.5
 * Add custom difficulty options
 
-More TBD
+### Milestone 0.6
+* Recursive Reveal
 
 <hr/>
 

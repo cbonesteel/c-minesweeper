@@ -10,6 +10,9 @@ int main() {
   
   board__build_array(6, 4, &board);
 
+  board__flag(2, 5, &board);
+  board__reveal(3, 5, &board);
+  
   printf("MINES\n");
   for (int i = 0; i < 4; ++i) {
     for (int j = 0; j < 6; ++j) {

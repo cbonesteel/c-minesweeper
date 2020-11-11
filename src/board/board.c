@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "board.h"
+#include "../../inc/board/board.h"
 
 /**
  * This function takes a specified height and width and builds the passed

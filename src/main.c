@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "board/board.h"
+#include "../inc/board/board.h"
 
 int main() {
   struct Board board;

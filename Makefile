@@ -1,8 +1,14 @@
-compile: minesweeper/board/board.o minesweeper/main.c
-	gcc -o minesweeper-game minesweeper/main.c minesweeper/board/board.o
+compile: build board.o src/main.c
+	gcc -o minesweeper-game src/main.c build/board/board.o
 
-board.o: minesweeper/board/board.c minesweeper/board/board.h
-	gcc -c minesweeper/board/board.c
+board.o: build src/board/board.c inc/board/board.h
+	gcc -c src/board/board.c
+	mv board.o build/board/board.o
+
+build: 
+	mkdir build
+	mkdir build/board
+	mkdir build/game
 
 clean:
-	rm minesweeper/board/*.o minesweeper-game
+	rm -rf build minesweeper-game

@@ -9,21 +9,48 @@
  * This function prints the welcome screen for the game.
  */
 void printWelcome() {
+  FILE *fp;
+  fp = fopen("resources/game/welcome.txt", "r");
+  char buff[255];
 
+  for (int i = 0; i < 6; ++i) {
+    fgets(buff, 255, (FILE*)fp);
+    printf("%s", buff );
+  } // for
+    
+  fclose(fp);
 } // printWelcome
 
 /**
  * This function prints the win screen for the game.
  */
 void printWin() {
+  FILE *fp;
+  fp = fopen("resources/game/win.txt", "r");
+  char buff[255];
 
+  for (int i = 0; i < 9; ++i) {
+    fgets(buff, 255, (FILE*)fp);
+    printf("%s", buff );
+  } // for
+    
+  fclose(fp);
 } // printWin
 
 /**
  * This function prints the loss screen for the game.
  */
 void printLoss() {
+  FILE *fp;
+  fp = fopen("resources/game/loss.txt", "r");
+  char buff[255];
 
+  for (int i = 0; i < 5; ++i) {
+    fgets(buff, 255, (FILE*)fp);
+    printf("%s", buff );
+  } // for
+    
+  fclose(fp);
 } // printLoss
 
 /**

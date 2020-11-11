@@ -15,7 +15,7 @@
  *
  * @return false if height OR width < 2; true otherwise
  */
-bool buildBoardArrays(int width, int height, struct Board *board) {
+bool board__build_array(int width, int height, struct Board *board) {
   if (width < 2 || height < 2) {
     return false;
   } // if
@@ -33,27 +33,39 @@ bool buildBoardArrays(int width, int height, struct Board *board) {
   } // for
 
   // Build array for game board
-  board->board_pointer = (int **)malloc(height * sizeof(int*));
+  board->board_pointer = (char **)malloc(height * sizeof(char*));
   for (int i = 0; i < height; ++i) {
-    board->board_pointer[i] = (int *)malloc(width * sizeof(int));
+    board->board_pointer[i] = (char *)malloc(width * sizeof(char));
   } // for
 
   for (int i = 0; i < height; ++i) {
     for (int j = 0; j < width; j++) {
-      board->board_pointer[i][j] = 0;
+      board->board_pointer[i][j] = '*';
+    } // for
+  } // for
+
+  // Build array for reveal tracking
+  board->reveal_pointer = (bool **)malloc(height * sizeof(bool*));
+  for (int i = 0; i < height; ++i) {
+    board->reveal_pointer[i] = (bool *)malloc(width * sizeof(bool));
+  } // for
+
+  for (int i = 0; i < height; ++i) {
+    for (int j = 0; j < width; j++) {
+      board->reveal_pointer[i][j] = false;
     } // for
   } // for
   
   return true;
   
-} // buildBoard
+} // board__build_array
 
 /**
  * This function takes a board struct and frees all the arrays from memory.
  *
  * @param board the board to be freed
  */
-void destructBoard(struct Board *board) {
+void board__destruct(struct Board *board) {
   // free mine_pointer
   for (int i = 0; i < 4; ++i) {
     free(board->mine_pointer[i]);
@@ -67,4 +79,55 @@ void destructBoard(struct Board *board) {
   } // for
   
   free(board->board_pointer);
-} // destructBoard
+
+  // free reveal_pointer
+  for (int i = 0; i < 4; ++i) {
+    free(board->reveal_pointer[i]);
+  } // for
+  
+  free(board->reveal_pointer);
+} // board__destruct
+
+/**
+ * This function replaces the specified position with a flag (F).
+ * This function returns true if operation can be completed, ie. 
+ * the spot has yet to be revealed. Returns false otherwise.
+ *
+ * @param x the x coordinate
+ * @param y the y coordinate
+ *
+ * @return true if flag is successful; false otherwise
+ */
+bool board__flag(int x, int y, struct Board *board) {
+  if (board->reveal_pointer[x][y] == 0) {
+    board->board_pointer[x][y] = 'F';
+    return true;
+  } else {
+    return false;
+  } // if
+} // board__flag
+
+/**
+ * This function reveals the specified position. This function
+ * will only change the specified square to reveal either a loss
+ * or a number of mines adjacent. The function game__reveal will
+ * handle recursive reveal operations. Returns true if reveal is
+ * successful, ie. the spot has yet to be revealed. Returns false
+ * otherwise.
+ *
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * 
+ * @return true if reveal is succesful; false otherwise
+ */
+bool board__reveal(int x, int y, struct Board *board) {
+  if (board->reveal_pointer[x][y] == 0) {
+    board->reveal_pointer[x][y] = 1;
+    
+    // TODO: Make this do something to actually reveal
+    board->board_pointer[x][y] = 1;
+    return true;
+  } else {
+    return false;
+  } // if
+} // board__reveal

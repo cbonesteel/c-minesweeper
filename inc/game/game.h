@@ -7,10 +7,10 @@
 #include "../board/board.h"
 #include "command_processor.h"
 
-void printWelcome();
-void printWin();
-void printLoss();
-void takeGameInput();
+void game__printWelcome();
+void game__printWin();
+void game__printLoss();
+void game__takeGameInput();
 
 
 

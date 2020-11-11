@@ -8,7 +8,7 @@
 /**
  * This function prints the welcome screen for the game.
  */
-void printWelcome() {
+void game__printWelcome() {
   FILE *fp;
   fp = fopen("resources/game/welcome.txt", "r");
   char buff[255];
@@ -24,7 +24,7 @@ void printWelcome() {
 /**
  * This function prints the win screen for the game.
  */
-void printWin() {
+void game__printWin() {
   FILE *fp;
   fp = fopen("resources/game/win.txt", "r");
   char buff[255];
@@ -40,7 +40,7 @@ void printWin() {
 /**
  * This function prints the loss screen for the game.
  */
-void printLoss() {
+void game__printLoss() {
   FILE *fp;
   fp = fopen("resources/game/loss.txt", "r");
   char buff[255];
@@ -58,6 +58,6 @@ void printLoss() {
  * then passes necessary information to the command processor to
  * be handled.
  */
-void takeGameInput() {
+void game__takeGameInput() {
 
 } // takeGameInput

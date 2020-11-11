@@ -11,7 +11,7 @@
  * the game loop, print statements, and tunnels to the command processors.
  *
  * @author Cameron Bonesteel
- * @date Novemeber 11, 2020
+ * @date Novemeber 10, 2020
  */
 
 #include <stdio.h>
@@ -35,7 +35,7 @@ void game__printWelcome() {
   } // for
     
   fclose(fp);
-} // printWelcome
+} // game__printWelcome
 
 /**
  * This function prints the win screen for the game.
@@ -51,7 +51,7 @@ void game__printWin() {
   } // for
     
   fclose(fp);
-} // printWin
+} // game__printWin
 
 /**
  * This function prints the loss screen for the game.
@@ -67,7 +67,22 @@ void game__printLoss() {
   } // for
     
   fclose(fp);
-} // printLoss
+} // game__printLoss
+
+/**
+ * This function builds a specified game. This function builds
+ * the board to the specified size and difficulty. The won and noFog
+ * params are set to false by default.
+ * 
+ * @param game the game to have it's board built
+ */
+void game__buildGame(struct Game *game) {
+  // TODO: Take input for board size
+  game->noFog = false;
+  game->won = false;
+  board__build_array(10, 10, &game->board);
+  // TODO: Place mines based on settings
+} // game__buildBoard
 
 /**
  * This function prompts the user for game input. This function
@@ -75,5 +90,5 @@ void game__printLoss() {
  * be handled.
  */
 void game__takeGameInput() {
-
-} // takeGameInput
+  // TODO: Implementation
+} // game__takeGameInput

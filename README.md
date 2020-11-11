@@ -23,12 +23,21 @@ found here:
 * [make](https://www.gnu.org/software/make/)
 
 ### Installation and Running
+**NOTE:** This repository has only been run on macOS. The Makefile relies on Unix based commands
+such as mv, mkdir, etc. This repository may not work on Windows using these instructions. Windows
+instructions will be written after the project is finished.
 1. In ~/your/path clone this repository
 2. To compile, run the following command. The output should look similar to below.
 ``` console
 system:c-minesweeper user$ make
-cc  -I/usr/local/opt/icu4c/include:-I/usr/local/opt/ruby/include:  -c -o minesweeper/board/board.o minesweeper/board/board.c
-gcc -o minesweeper-game minesweeper/main.c minesweeper/board/board.o
+mkdir build
+mkdir build/board
+mkdir build/game
+gcc -c src/game/game.c
+mv game.o build/game/game.o
+gcc -c src/board/board.c
+mv board.o build/board/board.o
+gcc -o minesweeper-game src/main.c build/board/board.o build/game/game.o
 ```
 3. To run, simply execute the generated executable minesweeper-game as follows.
 ``` console
@@ -37,14 +46,40 @@ system:c-minesweeper user$ ./minesweeper-game
 4. To clean the directory, run the following command. The output should look simialr to below.
 ``` console
 system:c-minesweeper user$ make clean
-rm minesweeper/board/*.o minesweeper-game
+rm -rf build minesweeper-game
 ```
 
 
 ## Roadmap
 
-TO BE COMPLETED
+### Milestone 0.1
+* Create Board
+* Create Welcome Text
+* Get basic game functions working
+  * Flag
+  * Reveal
+  * Help
+  * No fog (Hidden Command)
 
+### Milestone 0.2
+* Create game loop to be able to play many games on one run
+* Add extra game functions
+  * Quit game to menu
+  * Quit game
+
+### Milestone 0.3
+* Add nicer looking board
+* Add point system
+* Print score at end of game
+
+### Milestone 0.4
+* Add game menu for custom sizes
+* Add highscores to menu
+
+### Milestone 0.5
+* Add custom difficulty options
+
+More TBD
 
 <hr/>
 

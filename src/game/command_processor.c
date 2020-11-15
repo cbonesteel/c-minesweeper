@@ -18,15 +18,15 @@
 /**
  *
  */
-bool command_processor__reveal(struct Game *game) {
+bool command_processor__reveal(int x, int y, struct Game *game) {
   // TODO: Add Implementation
   return false;
 } // command_processor__reveal
 
 /**
- *
+ * 
  */
-bool command_processor__flag(struct Game *game) {
+bool command_processor__flag(int x, int y, struct Game *game) {
   // TODO: Add Implementation
   return false;
 } // command_processor__flag
@@ -44,7 +44,7 @@ void command_processor__help() {
 /**
  *
  */
-bool command_processor__noFog(struct Game *game) {
+bool command_processor__noFog(int x, int y, struct Game *game) {
   // TODO: Add Implementation
   return false;
 } // command_processor__noFog

@@ -12,10 +12,10 @@
 #include "../board/board.h"
 #include "game.h"
 
-bool command_processor__reveal(struct Game *game);
-bool command_processor__flag(struct Game *game);
+bool command_processor__reveal(int x, int y, struct Game *game);
+bool command_processor__flag(int x, int y, struct Game *game);
 void command_processor__help();
-bool command_processor__noFog(struct Game *game);
+bool command_processor__noFog(int x, int y, struct Game *game);
 
 
 #endif // COMMAND_PROCESSOR_H

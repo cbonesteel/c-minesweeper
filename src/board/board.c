@@ -27,6 +27,10 @@
 #include <stdbool.h>
 #include "../../inc/board/board.h"
 
+//------------------------------//
+//   CONSTRUCTOR / DESTRUCTOR   //
+//------------------------------//
+
 /**
  * This function takes a specified height and width and builds the passed
  * in board's arrays. This function returns a boolean to specify if the
@@ -78,6 +82,9 @@ bool board__build_array(int width, int height, struct Board *board) {
       board->reveal_pointer[i][j] = false;
     } // for
   } // for
+
+  board__set_x(width, board);
+  board__set_y(height, board);
   
   return true;
   
@@ -110,6 +117,58 @@ void board__destruct(struct Board *board) {
   
   free(board->reveal_pointer);
 } // board__destruct
+
+//-----------------------//
+//   GETTERS / SETTERS   //
+//-----------------------//
+
+/**
+ * This function takes an x value and a board and sets the baord's
+ * max x value.
+ *
+ * @param x the x length
+ * @param board the board to be configured
+ */
+void board__set_x(int x, struct Board *board) {
+  board->board_x = x;
+} // board__set_x
+
+/**
+ * This function takes an y value and a board and sets the baord's
+ * max y value.
+ *
+ * @param y the y length
+ * @param board the board to be configured
+ */
+void board__set_y(int y, struct Board *board) {
+  board->board_y = y;
+} // board__set_y
+
+/**
+ * This function returns the max x value of the passed in board.
+ *
+ * @param board the board to get the x max of
+ * 
+ * @return the x max
+ */
+int board__get_x(struct Board *board) {
+  return board->board_x;
+} // board__get_x
+
+/**
+ * This function returns the max y value of the passed in board.
+ *
+ * @param board the board to get the y max of
+ * 
+ * @return the y max
+ */
+int board__get_y(struct Board *board) {
+  return board->board_y;
+} // board__get_y
+
+//-----------------------------//
+//   USER COMMAND PROCESSORS   //
+//-----------------------------//
 
 /**
  * This function replaces the specified position with a flag (F).
@@ -156,3 +215,94 @@ bool board__reveal(int x, int y, struct Board *board) {
     return false;
   } // if
 } // board__reveal
+
+//-----------------//
+//   MINE PLACER   //
+//-----------------//
+
+/**
+ * This function takes an x and y coordinate and places
+ * the mine on the mine_pointer array to keep track of the mines.
+ *
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * @board the board for the mine to be placed on
+ */
+void board__place_mine(int x, int y, struct Board *board) {
+  board->mine_pointer[x][y] = true;
+} // board__place_mine
+
+//--------------------//
+//   REVEAL UTILITY   //
+//--------------------//
+
+/**
+ * This function takes in an x and y and counts the number of mines
+ * in the adjacent tiles. Returns this value.
+ *
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * @param the board to check
+ *
+ * @return the number of mines adjacent to this square
+ */
+int board__count_num_adjacent(int x, int y, struct Board *board) {
+  int count = 0;
+
+  bool x_left = (x - 1) >= 0;
+  bool x_right = (x + 1) < board__get_x(board);
+  bool y_top = (y + 1) < board__get_y(board);
+  bool y_bottom = (y - 1) >= 0;
+  
+  // Left Column
+  if (x_left) {
+    if (y_top) { // left top
+      if (board->mine_pointer[x - 1][y + 1] == true) {
+        count++;
+      } // if
+    } // if
+    if (y_bottom) { // left bottom
+      if (board->mine_pointer[x - 1][y - 1] == true) {
+        count++;
+      } // if
+    } // if
+    // left center
+    if (board->mine_pointer[x - 1][y] == true) {
+      count++;
+    } // if
+  } // if
+
+  // Right Column
+  if (x_right) {
+    if (y_top) { // right top
+      if (board->mine_pointer[x + 1][y + 1] == true) {
+        count++;
+      } // if
+    } // if
+    if (y_bottom) { // right bottom
+      if (board->mine_pointer[x + 1][y - 1] == true) {
+        count++;
+      } // if
+    } // if
+    // right center
+    if (board->mine_pointer[x + 1][y] == true) {
+      count++;
+    } // if
+  } // if
+
+  // Tile Above
+  if (y_top) {
+    if (board->mine_pointer[x][y + 1] == true) {
+      count++;
+    } // if
+  } // if
+
+  // Tile Below
+  if (y_bottom) {
+    if (board->mine_pointer[x][y - 1] == true) {
+      count++;
+    } // if
+  } // if
+
+  return count;
+} // board__count_num_adjacent

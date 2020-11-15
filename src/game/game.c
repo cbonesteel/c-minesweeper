@@ -125,13 +125,13 @@ void game__takeGameInput(struct Game *game) {
 
   // Processes Input by calling correct functions
   if (strncmp(input, "r", 1) == 0 || strncmp(input, "reveal", 6) == 0) {
-    command_processor__reveal(game);
-    printf("%d ", x);
-    printf("%d\n", y);
+    command_processor__reveal(x, y, game);
   } else if (strncmp(input, "f", 1) == 0 || strncmp(input, "flag", 4) == 0) {
-    command_processor__flag(game);
+    command_processor__flag(x, y, game);
   } else if (strncmp(input, "h", 1) == 0 || strncmp(input, "help", 4) == 0) {
     command_processor__help();
+  } else if (strncmp(input, "noFog", 5)) {
+    command_processor__noFog(x, y, game);
   } else {
     printf("Invalid Command\n"); // TODO: Change this when design is finalized
   } // if

@@ -20,36 +20,38 @@ int main() {
   struct Game game;
 
   game__buildGame(&game);
-   
+
+  game__takeGameInput(&game);
+  
   /* board__flag(2, 5, &board); */
   /* board__reveal(3, 5, &board); */
 
-  command_processor__help();
+  /* command_processor__help(); */
   
-  printf("MINES\n");
-  for (int i = 0; i < 4; ++i) {
-    for (int j = 0; j < 6; ++j) {
-      printf("%d ", game.board.mine_pointer[i][j]);
-    } // for
-    printf("\n");
-  } // for
+  /* printf("MINES\n"); */
+  /* for (int i = 0; i < 4; ++i) { */
+  /*   for (int j = 0; j < 6; ++j) { */
+  /*     printf("%d ", game.board.mine_pointer[i][j]); */
+  /*   } // for */
+  /*   printf("\n"); */
+  /* } // for */
 
-  printf("\nBOARD\n");
+  /* printf("\nBOARD\n"); */
   
-  for (int i = 0; i < 4; ++i) {
-    for (int j = 0; j < 6; ++j) {
-      printf("%c ", game.board.board_pointer[i][j]);
-    } // for
-    printf("\n");
-  } // for
+  /* for (int i = 0; i < 4; ++i) { */
+  /*   for (int j = 0; j < 6; ++j) { */
+  /*     printf("%c ", game.board.board_pointer[i][j]); */
+  /*   } // for */
+  /*   printf("\n"); */
+  /* } // for */
 
-  printf("\nREVEAL\n");
-  for (int i = 0; i < 4; ++i) {
-    for (int j = 0; j < 6; ++j) {
-      printf("%d ", game.board.reveal_pointer[i][j]);
-    } // for
-    printf("\n");
-  } // for
+  /* printf("\nREVEAL\n"); */
+  /* for (int i = 0; i < 4; ++i) { */
+  /*   for (int j = 0; j < 6; ++j) { */
+  /*     printf("%d ", game.board.reveal_pointer[i][j]); */
+  /*   } // for */
+  /*   printf("\n"); */
+  /* } // for */
   
   /* printWelcome(); */
   /* printf("\n"); */

@@ -22,7 +22,7 @@ void game__printWelcome();
 void game__printWin();
 void game__printLoss();
 void game__buildGame(struct Game *game);
-void game__takeGameInput();
+void game__takeGameInput(struct Game *game);
 
 
 

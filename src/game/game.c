@@ -87,8 +87,53 @@ void game__buildGame(struct Game *game) {
 /**
  * This function prompts the user for game input. This function
  * then passes necessary information to the command processor to
- * be handled.
+ * be handled. Prints out invalid command information if command
+ * is invalid.
+ *
+ * @param game the game to process input on
  */
-void game__takeGameInput() {
-  // TODO: Implementation
+void game__takeGameInput(struct Game *game) {
+  //---VARIABLES---//
+  char rawInput[20];
+
+  char * input;
+  char * xChar;
+  char * yChar;
+  
+  int x;
+  int y;
+
+  // Take in command
+  printf("Enter a command: ");
+  fgets(rawInput, 20, stdin);
+
+  // Parse command
+  input = strtok(rawInput, " ");
+  xChar = strtok(NULL, " ");
+  yChar = strtok(NULL, " ");
+
+  // Checks if input requiring coordinates is in form [input] [x] [y]
+  if ((xChar == NULL || yChar == NULL) &&
+      (strncmp(input, "r", 1) == 0 || strncmp(input, "f", 1) == 0)) {
+    // Makes input invalid
+    input = "x";
+  } else if (strncmp(input, "r", 1) == 0 || strncmp(input, "f", 1) == 0) {
+    // Sets x and y
+    x = atoi(xChar);
+    y = atoi(yChar);
+  } // if
+
+  // Processes Input by calling correct functions
+  if (strncmp(input, "r", 1) == 0 || strncmp(input, "reveal", 6) == 0) {
+    command_processor__reveal(game);
+    printf("%d ", x);
+    printf("%d\n", y);
+  } else if (strncmp(input, "f", 1) == 0 || strncmp(input, "flag", 4) == 0) {
+    command_processor__flag(game);
+  } else if (strncmp(input, "h", 1) == 0 || strncmp(input, "help", 4) == 0) {
+    command_processor__help();
+  } else {
+    printf("Invalid Command\n"); // TODO: Change this when design is finalized
+  } // if
+  
 } // game__takeGameInput

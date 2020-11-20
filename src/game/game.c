@@ -24,7 +24,7 @@
 /**
  * This function prints the welcome screen for the game.
  */
-void game__printWelcome() {
+void game__print_welcome() {
   FILE *fp;
   fp = fopen("resources/game/welcome.txt", "r");
   char buff[255];
@@ -35,12 +35,12 @@ void game__printWelcome() {
   } // for
     
   fclose(fp);
-} // game__printWelcome
+} // game__print_welcome
 
 /**
  * This function prints the win screen for the game.
  */
-void game__printWin() {
+void game__print_win() {
   FILE *fp;
   fp = fopen("resources/game/win.txt", "r");
   char buff[255];
@@ -51,12 +51,12 @@ void game__printWin() {
   } // for
     
   fclose(fp);
-} // game__printWin
+} // game__print_win
 
 /**
  * This function prints the loss screen for the game.
  */
-void game__printLoss() {
+void game__print_loss() {
   FILE *fp;
   fp = fopen("resources/game/loss.txt", "r");
   char buff[255];
@@ -67,7 +67,7 @@ void game__printLoss() {
   } // for
     
   fclose(fp);
-} // game__printLoss
+} // game__print_loss
 
 /**
  * This function builds a specified game. This function builds
@@ -76,13 +76,13 @@ void game__printLoss() {
  * 
  * @param game the game to have it's board built
  */
-void game__buildGame(struct Game *game) {
+void game__build_game(struct Game *game) {
   // TODO: Take input for board size
   game->noFog = false;
   game->won = false;
   board__build_array(10, 10, &game->board);
   // TODO: Place mines based on settings
-} // game__buildBoard
+} // game__build_game
 
 /**
  * This function prompts the user for game input. This function
@@ -92,7 +92,7 @@ void game__buildGame(struct Game *game) {
  *
  * @param game the game to process input on
  */
-void game__takeGameInput(struct Game *game) {
+void game__take_game_input(struct Game *game) {
   //---VARIABLES---//
   char rawInput[20];
 
@@ -136,4 +136,4 @@ void game__takeGameInput(struct Game *game) {
     printf("Invalid Command\n"); // TODO: Change when game design is finalized
   } // if
   
-} // game__takeGameInput
+} // game__take_game_input

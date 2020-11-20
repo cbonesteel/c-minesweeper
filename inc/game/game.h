@@ -18,11 +18,11 @@ struct Game {
   bool won;
 }; // Game
 
-void game__printWelcome();
-void game__printWin();
-void game__printLoss();
-void game__buildGame(struct Game *game);
-void game__takeGameInput(struct Game *game);
+void game__print_welcome();
+void game__print_win();
+void game__print_loss();
+void game__build_game(struct Game *game);
+void game__take_game_input(struct Game *game);
 
 
 

@@ -67,9 +67,7 @@ bool board__build_array(int width, int height, struct Board *board) {
 
   for (int i = 0; i < height; i++) {
     for (int j = 0; j < width; j++) {
-      printf("%d, %d\n", i, j);
       board->board_pointer[i][j] = '*';
-      printf("%s\n", &board->board_pointer[i][j]);
     } // for
   } // for
 
@@ -88,10 +86,7 @@ bool board__build_array(int width, int height, struct Board *board) {
   board__set_x(width, board);
   board__set_y(height, board);
 
-  printf("%s\n", &board->board_pointer[0][0]);
-  
   return true;
-  
 } // board__build_array
 
 /**

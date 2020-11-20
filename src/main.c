@@ -26,7 +26,7 @@ int main() {
 
   for (int i = 0; i < board__get_y(&game.board); i++) {
     for (int j = 0; j < board__get_x(&game.board); j++) {
-      printf("%s ", &game.board.board_pointer[i][j]);
+      printf("%c ", game.board.board_pointer[i][j]);
     } // for
     printf("\n");
   } // for
@@ -35,7 +35,7 @@ int main() {
 
   for (int i = 0; i < board__get_y(&game.board); i++) {
     for (int j = 0; j < board__get_x(&game.board); j++) {
-      printf("%s ", &game.board.board_pointer[i][j]);
+      printf("%c ", game.board.board_pointer[i][j]);
     } // for
     printf("\n");
   } // for

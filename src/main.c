@@ -20,11 +20,25 @@ int main() {
   struct Game game;
 
   game__buildGame(&game);
-
+  
   board__place_mine(1, 1, &game.board);
   board__place_mine(1, 2, &game.board);
+
+  for (int i = 0; i < board__get_y(&game.board); i++) {
+    for (int j = 0; j < board__get_x(&game.board); j++) {
+      printf("%s ", &game.board.board_pointer[i][j]);
+    } // for
+    printf("\n");
+  } // for
   
-  printf("%d\n", board__count_num_adjacent(0, 1, &game.board));
-  
+  game__takeGameInput(&game);
+
+  for (int i = 0; i < board__get_y(&game.board); i++) {
+    for (int j = 0; j < board__get_x(&game.board); j++) {
+      printf("%s ", &game.board.board_pointer[i][j]);
+    } // for
+    printf("\n");
+  } // for
+
   return 0;
 } // main

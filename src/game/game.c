@@ -133,7 +133,7 @@ void game__takeGameInput(struct Game *game) {
   } else if (strncmp(input, "noFog", 5)) {
     command_processor__noFog(x, y, game);
   } else {
-    printf("Invalid Command\n"); // TODO: Change this when design is finalized
+    printf("Invalid Command\n"); // TODO: Change when game design is finalized
   } // if
   
 } // game__takeGameInput

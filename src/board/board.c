@@ -49,11 +49,11 @@ bool board__build_array(int width, int height, struct Board *board) {
 
   // Build array for mines
   board->mine_pointer = (bool **)malloc(height * sizeof(bool*));
-  for (int i = 0; i < height; ++i) {
+  for (int i = 0; i < height; i++) {
     board->mine_pointer[i] = (bool *)malloc(width * sizeof(bool));
   } // for
 
-  for (int i = 0; i < height; ++i) {
+  for (int i = 0; i < height; i++) {
     for (int j = 0; j < width; j++) {
       board->mine_pointer[i][j] = false;
     } // for
@@ -61,23 +61,25 @@ bool board__build_array(int width, int height, struct Board *board) {
 
   // Build array for game board
   board->board_pointer = (char **)malloc(height * sizeof(char*));
-  for (int i = 0; i < height; ++i) {
+  for (int i = 0; i < height; i++) {
     board->board_pointer[i] = (char *)malloc(width * sizeof(char));
   } // for
 
-  for (int i = 0; i < height; ++i) {
+  for (int i = 0; i < height; i++) {
     for (int j = 0; j < width; j++) {
+      printf("%d, %d\n", i, j);
       board->board_pointer[i][j] = '*';
+      printf("%s\n", &board->board_pointer[i][j]);
     } // for
   } // for
 
   // Build array for reveal tracking
   board->reveal_pointer = (bool **)malloc(height * sizeof(bool*));
-  for (int i = 0; i < height; ++i) {
+  for (int i = 0; i < height; i++) {
     board->reveal_pointer[i] = (bool *)malloc(width * sizeof(bool));
   } // for
 
-  for (int i = 0; i < height; ++i) {
+  for (int i = 0; i < height; i++) {
     for (int j = 0; j < width; j++) {
       board->reveal_pointer[i][j] = false;
     } // for
@@ -85,6 +87,8 @@ bool board__build_array(int width, int height, struct Board *board) {
 
   board__set_x(width, board);
   board__set_y(height, board);
+
+  printf("%s\n", &board->board_pointer[0][0]);
   
   return true;
   
@@ -205,11 +209,12 @@ bool board__flag(int x, int y, struct Board *board) {
  * @return true if reveal is succesful; false otherwise
  */
 bool board__reveal(int x, int y, struct Board *board) {
-  if (board->reveal_pointer[x][y] == 0) {
-    board->reveal_pointer[x][y] = 1;
+  if (board->reveal_pointer[x][y] == false) {
+    board->board_pointer[x][y] = board__count_num_adjacent(x, y, board);
+    board->reveal_pointer[x][y] = true;
     
-    // TODO: Make this do something to actually reveal
-    board->board_pointer[x][y] = 1;
+    // TODO: Make Recursive Reveal if Needed
+    
     return true;
   } else {
     return false;
@@ -306,3 +311,21 @@ int board__count_num_adjacent(int x, int y, struct Board *board) {
 
   return count;
 } // board__count_num_adjacent
+
+/**
+ * This function takes an x, a y, and a board struct and returns true
+ * if the specified position contains a mine. Returns false otherwise.
+ *
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * @param board the board to be checked
+ *
+ * @return true if the spot contains a mine; false otherwise
+ */
+bool board__contains_mine(int x, int y, struct Board *board) {
+  if (board->mine_pointer[x][y] == true) {
+    return true;
+  } else {
+    return false;
+  } // if
+} // board__contains_mine

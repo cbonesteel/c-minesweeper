@@ -16,10 +16,26 @@
 #include "../../inc/game/command_processor.h"
 
 /**
- *
+ * 
  */
 bool command_processor__reveal(int x, int y, struct Game *game) {
-  // TODO: Add Implementation
+  /* Checks if x and y are in bounds */
+  if (x > board__get_x(&game->board)) {
+    printf("x is out of bounds\n"); // TODO: Change when game design is finalized
+  } else if (y > board__get_y(&game->board)) {
+    printf("y is out of bounds\n"); // TODO: Change when game design is finalized
+  } // if
+
+  /* Check if there is a mine at the spot to be revealed */
+  if (board__contains_mine(x, y, &game->board) == true) {
+    // TODO: Make Lose Function to end game loop
+    game__printLoss();
+    return false;
+  } // if
+
+  /* If all prior checks pass, reveal square*/
+  board__reveal(x, y, &game->board);
+
   return false;
 } // command_processor__reveal
 

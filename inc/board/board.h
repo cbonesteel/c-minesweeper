@@ -16,6 +16,7 @@ struct Board {
   char **board_pointer;
   int board_x;
   int board_y;
+  int board_num_mines;
 }; // board
 
 // constructor / destructor

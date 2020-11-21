@@ -230,6 +230,7 @@ bool board__reveal(int x, int y, struct Board *board) {
  */
 void board__place_mine(int x, int y, struct Board *board) {
   board->mine_pointer[x][y] = true;
+  board->board_num_mines++;
 } // board__place_mine
 
 //--------------------//

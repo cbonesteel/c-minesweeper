@@ -22,8 +22,10 @@ bool command_processor__reveal(int x, int y, struct Game *game) {
   /* Checks if x and y are in bounds */
   if (x > board__get_x(&game->board)) {
     printf("x is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
   } else if (y > board__get_y(&game->board)) {
     printf("y is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
   } // if
 
   /* Check if there is a mine at the spot to be revealed */
@@ -36,15 +38,31 @@ bool command_processor__reveal(int x, int y, struct Game *game) {
   /* If all prior checks pass, reveal square*/
   board__reveal(x, y, &game->board);
 
-  return false;
+  return true;
 } // command_processor__reveal
 
 /**
  * 
  */
 bool command_processor__flag(int x, int y, struct Game *game) {
-  // TODO: Add Implementation
-  return false;
+  /* Checks if x and y are in bounds */
+  if (x > board__get_x(&game->board)) {
+    printf("x is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
+  } else if (y > board__get_y(&game->board)) {
+    printf("y is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
+  } // if
+
+  /* Check if there is a mine at the spot to be falgged */
+  if (board__contains_mine(x, y, &game->board) == true) {
+    game->board.board_num_mines--;
+  } // if
+
+  /* If the in bounds check passes, flag square*/
+  board__flag(x, y, &game->board);
+  
+  return true;
 } // command_processor__flag
 
 /**

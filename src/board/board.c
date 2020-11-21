@@ -205,7 +205,7 @@ bool board__flag(int x, int y, struct Board *board) {
  */
 bool board__reveal(int x, int y, struct Board *board) {
   if (board->reveal_pointer[x][y] == false) {
-    board->board_pointer[x][y] = board__count_num_adjacent(x, y, board);
+    board->board_pointer[x][y] = board__count_num_adjacent(x, y, board) + '0';
     board->reveal_pointer[x][y] = true;
     
     // TODO: Make Recursive Reveal if Needed

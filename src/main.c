@@ -30,6 +30,8 @@ int main() {
     } // for
     printf("\n");
   } // for
+
+  printf("Num Mines: %d", game.board.board_num_mines);
   
   game__take_game_input(&game);
 
@@ -39,6 +41,8 @@ int main() {
     } // for
     printf("\n");
   } // for
+
+  printf("Num Mines: %d", game.board.board_num_mines);
 
   return 0;
 } // main

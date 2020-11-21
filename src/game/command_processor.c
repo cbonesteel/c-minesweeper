@@ -16,14 +16,29 @@
 #include "../../inc/game/command_processor.h"
 
 /**
- * 
+ * This function processes a reveal command from the user. This function
+ * takes in the x and y values of the square to be revealed as well as the
+ * game to modify. It first checks the x and y values to ensure they are inbounds
+ * for the board, if they are not, prints error message to the user and returns
+ * false. Otherwise, the function checks if a mine is present on the tile, and
+ * if one is, invokes the method to end the game loop and prints the losing
+ * message. If one is not found, it will reveal the specified tile and return
+ * true.
+ *
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * @param game the game to be modified
+ *
+ * @return true if revealed sucessfully; false in all other cases
  */
 bool command_processor__reveal(int x, int y, struct Game *game) {
   /* Checks if x and y are in bounds */
   if (x > board__get_x(&game->board)) {
     printf("x is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
   } else if (y > board__get_y(&game->board)) {
     printf("y is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
   } // if
 
   /* Check if there is a mine at the spot to be revealed */
@@ -36,15 +51,42 @@ bool command_processor__reveal(int x, int y, struct Game *game) {
   /* If all prior checks pass, reveal square*/
   board__reveal(x, y, &game->board);
 
-  return false;
+  return true;
 } // command_processor__reveal
 
 /**
- * 
+ * This function processes a flag command from the user. This function
+ * takes in an x and a y as well as the game to be mofified. The function
+ * first checks to ensure the x and y are in bounds. If they are not, it
+ * prints a message to the user and returns false. Otherwise, it will check
+ * if a mine is actually present and if one is, it will decrease the remaining
+ * mines counter and the regardless flag the square and return true.
+ *
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * @param game the game to be modified
+ *
+ * @return true if flagged; false otherwise
  */
 bool command_processor__flag(int x, int y, struct Game *game) {
-  // TODO: Add Implementation
-  return false;
+  /* Checks if x and y are in bounds */
+  if (x > board__get_x(&game->board)) {
+    printf("x is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
+  } else if (y > board__get_y(&game->board)) {
+    printf("y is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
+  } // if
+
+  /* Check if there is a mine at the spot to be falgged */
+  if (board__contains_mine(x, y, &game->board) == true) {
+    game->board.board_num_mines--;
+  } // if
+
+  /* If the in bounds check passes, flag square*/
+  board__flag(x, y, &game->board);
+  
+  return true;
 } // command_processor__flag
 
 /**
@@ -58,9 +100,16 @@ void command_processor__help() {
 } // command_processor__help
 
 /**
+ * This function processes the noFog command from the user. This function
+ * simply sets the no fog value for the board to true to be handled by the
+ * game loop's print function. Returns true.
  *
+ * @param game the game to be modified
+ *
+ * @return true
  */
-bool command_processor__noFog(int x, int y, struct Game *game) {
-  // TODO: Add Implementation
-  return false;
-} // command_processor__noFog
+bool command_processor__no_fog(struct Game *game) {
+  board__set_no_fog(true, &game->board);
+  
+  return true;
+} // command_processor__no_fog

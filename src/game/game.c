@@ -131,7 +131,7 @@ void game__take_game_input(struct Game *game) {
   } else if (strncmp(input, "h", 1) == 0 || strncmp(input, "help", 4) == 0) {
     command_processor__help();
   } else if (strncmp(input, "noFog", 5)) {
-    command_processor__noFog(x, y, game);
+    command_processor__no_fog(game);
   } else {
     printf("Invalid Command\n"); // TODO: Change when game design is finalized
   } // if

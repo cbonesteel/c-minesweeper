@@ -19,7 +19,7 @@
 int main() {
   struct Game game;
 
-  game__buildGame(&game);
+  game__build_game(&game);
   
   board__place_mine(1, 1, &game.board);
   board__place_mine(1, 2, &game.board);
@@ -31,7 +31,7 @@ int main() {
     printf("\n");
   } // for
   
-  game__takeGameInput(&game);
+  game__take_game_input(&game);
 
   for (int i = 0; i < board__get_y(&game.board); i++) {
     for (int j = 0; j < board__get_x(&game.board); j++) {

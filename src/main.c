@@ -15,34 +15,27 @@
 #include "../inc/board/board.h"
 #include "../inc/game/game.h"
 #include "../inc/game/command_processor.h"
+#include "../inc/menu/menu.h"
 
 int main() {
   struct Game game;
-
-  game__build_game(&game);
+  char input[4];
+    
+  // TODO: Move Much of this to helper methods
+  // main should contain one call to a run function
+  menu__print_welcome();
   
-  board__place_mine(1, 1, &game.board);
-  board__place_mine(1, 2, &game.board);
-
-  for (int i = 0; i < board__get_y(&game.board); i++) {
-    for (int j = 0; j < board__get_x(&game.board); j++) {
-      printf("%c ", game.board.board_pointer[i][j]);
-    } // for
-    printf("\n");
-  } // for
-
-  printf("Num Mines: %d", game.board.board_num_mines);
+  printf("\nStart New Game? Y/N: ");
   
-  game__take_game_input(&game);
-
-  for (int i = 0; i < board__get_y(&game.board); i++) {
-    for (int j = 0; j < board__get_x(&game.board); j++) {
-      printf("%c ", game.board.board_pointer[i][j]);
-    } // for
-    printf("\n");
-  } // for
-
-  printf("Num Mines: %d", game.board.board_num_mines);
-
+  fgets(input, 4, stdin);
+    
+  if (strncmp(input, "N", 1) == 0 || strncmp(input, "n", 1) == 0 ||
+      strncmp(input, "No", 2) == 0 || strncmp(input, "no", 2) == 0) {
+    return 0;
+  } else {
+    game__build_game(&game);
+    game__play(&game);
+  } // if
+  
   return 0;
 } // main

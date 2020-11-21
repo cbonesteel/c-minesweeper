@@ -245,14 +245,22 @@ bool board__reveal(int x, int y, struct Board *board) {
 /**
  * This function takes an x and y coordinate and places
  * the mine on the mine_pointer array to keep track of the mines.
+ * Returns true if mine was placed, returns false otherwise.
  *
  * @param x the x coordinate
  * @param y the y coordinate
  * @board the board for the mine to be placed on
+ *
+ * @return true if mine is placed; false otherwise
  */
-void board__place_mine(int x, int y, struct Board *board) {
-  board->mine_pointer[x][y] = true;
-  board->board_num_mines++;
+bool board__place_mine(int x, int y, struct Board *board) {
+  if (board->mine_pointer[x][y] == false) {
+    board->mine_pointer[x][y] = true;
+    board->board_num_mines++;
+    return true;
+  } else {
+    return false;
+  } // if
 } // board__place_mine
 
 //--------------------//
@@ -347,3 +355,43 @@ bool board__contains_mine(int x, int y, struct Board *board) {
     return false;
   } // if
 } // board__contains_mine
+
+//---------------------//
+//   PRINT FUNCTIONS   //
+//---------------------//
+
+/**
+ * This function takes in a board and prints the board to the screen.
+ *
+ * @param board the board to be printed
+ */
+void board__print_board(struct Board *board) {
+  for (int i = board__get_y(board) - 1; i >= 0; i--) {
+    for (int j = 0; j < board__get_x(board); j++) {
+      printf("%c ", board->board_pointer[i][j]);
+      // TODO: modify during final design implementation
+    } // for
+    printf("\n");
+  } // for
+} // board__print_board
+
+/**
+ * This function takes in a board and prints the board to the screen
+ * with mines visable to the user.
+ *
+ * @param board the board to print
+ */
+void board__print_no_fog(struct Board *board) {
+  for (int i = board__get_y(board) - 1; i >= 0; i--) {
+    for (int j = 0; j < board__get_x(board); j++) {
+      if (board->mine_pointer[i][j] == true) {
+        printf("@ ");
+        // TODO: modify during final design implementation
+      } else {
+        printf("%c ", board->board_pointer[i][j]);
+      } // if
+        // TODO: modify during final design implementation
+    } // for
+    printf("\n");
+  } // for
+} // board__print_no_fog

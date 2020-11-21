@@ -3,7 +3,7 @@
  * @brief Implementation for the game functions.
  *
  * Source code for the game. This contains all the functions
- * needed to run the game, expect command processes.
+ * needed to run the game, exceptt command processes.
  *
  * Design Philosophy:
  *
@@ -17,25 +17,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../../inc/board/board.h"
 #include "../../inc/game/game.h"
 #include "../../inc/game/command_processor.h"
-
-/**
- * This function prints the welcome screen for the game.
- */
-void game__print_welcome() {
-  FILE *fp;
-  fp = fopen("resources/game/welcome.txt", "r");
-  char buff[255];
-
-  for (int i = 0; i < 6; ++i) {
-    fgets(buff, 255, (FILE*)fp);
-    printf("%s", buff );
-  } // for
-    
-  fclose(fp);
-} // game__print_welcome
 
 /**
  * This function prints the win screen for the game.
@@ -78,9 +63,23 @@ void game__print_loss() {
  */
 void game__build_game(struct Game *game) {
   // TODO: Take input for board size
-  game->noFog = false;
-  game->won = false;
+  game__set_end(false, game);
   board__build_array(10, 10, &game->board);
+
+  /* Place mines randomly */
+  srand(time(0)); // use time for better randomness
+  
+  for (int i = 0; i < 20; i++) { // TODO: Replace < 20 with density calculation
+    bool placed = false;
+    while (!placed) {
+      int x = rand() % board__get_x(&game->board);
+      int y = rand() % board__get_y(&game->board);
+      placed = board__place_mine(x, y, &game->board);
+    } // while
+  } // for
+
+  board__set_no_fog(false, &game->board);
+  
   // TODO: Place mines based on settings
 } // game__build_game
 
@@ -105,6 +104,7 @@ void game__take_game_input(struct Game *game) {
 
   // Take in command
   printf("Enter a command: ");
+  
   fgets(rawInput, 20, stdin);
 
   // Parse command
@@ -130,10 +130,64 @@ void game__take_game_input(struct Game *game) {
     command_processor__flag(x, y, game);
   } else if (strncmp(input, "h", 1) == 0 || strncmp(input, "help", 4) == 0) {
     command_processor__help();
-  } else if (strncmp(input, "noFog", 5)) {
+  } else if (strncmp(input, "noFog", 5) == 0) {
     command_processor__no_fog(game);
   } else {
     printf("Invalid Command\n"); // TODO: Change when game design is finalized
   } // if
   
 } // game__take_game_input
+
+/**
+ * This function runs the play loop for the passed in game.
+ *
+ * @param game the game to be played
+ */
+void game__play(struct Game *game) {
+  while (!game__get_end(game)) {
+    printf("\n");
+    
+    if (board__get_no_fog(&game->board) == true) {
+      board__print_no_fog(&game->board);
+      board__set_no_fog(false, &game->board);
+    } else {
+      board__print_board(&game->board);
+    } // if
+
+    printf("\n");
+
+    game__take_game_input(game);
+
+    if (game->board.board_num_mines == 0) {
+      game__print_win();
+      game__set_end(true, game);
+    } // if
+  } // while
+} // game__play
+
+//---------------------//
+//   GETTERS/SETTERS   //
+//---------------------//
+
+/**
+ * This function takes in a bool and a game and sets
+ * end status in game.
+ *
+ * @param end the end status
+ * @param game the game to be set
+ */
+void game__set_end(bool end, struct Game *game) {
+  game->end = end;
+} // game__set_end
+
+/**
+ * This function takes in a game and returns it's end
+ * variable.
+ *
+ * @param game the game to get the end status of
+ *
+ * @return the end status
+ */
+bool game__get_end(struct Game *game) {
+  return game->end;
+} // game__get_end

@@ -78,7 +78,8 @@ void command_processor__help() {
 /**
  *
  */
-bool command_processor__noFog(int x, int y, struct Game *game) {
-  // TODO: Add Implementation
-  return false;
-} // command_processor__noFog
+bool command_processor__no_fog(struct Game *game) {
+  board__set_no_fog(true, &game->board);
+  
+  return true;
+} // command_processor__no_fog

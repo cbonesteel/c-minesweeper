@@ -17,6 +17,7 @@ struct Board {
   int board_x;
   int board_y;
   int board_num_mines;
+  bool board_no_fog;
 }; // board
 
 // constructor / destructor
@@ -26,8 +27,10 @@ void board__destruct(struct Board *board); // Deconstructor
 // getters/setters
 void board__set_x(int x, struct Board *board);
 void board__set_y(int y, struct Board *board);
+void board__set_no_fog(bool no_fog, struct Board *board);
 int board__get_x(struct Board *board);
 int board__get_y(struct Board *board);
+bool board__get_no_fog(struct Board *board);
 
 // user command processors
 bool board__flag(int x, int y, struct Board *board);

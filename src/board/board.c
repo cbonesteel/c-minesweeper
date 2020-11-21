@@ -133,7 +133,7 @@ void board__set_x(int x, struct Board *board) {
 } // board__set_x
 
 /**
- * This function takes an y value and a board and sets the baord's
+ * This function takes an y value and a board and sets the board's
  * max y value.
  *
  * @param y the y length
@@ -142,6 +142,17 @@ void board__set_x(int x, struct Board *board) {
 void board__set_y(int y, struct Board *board) {
   board->board_y = y;
 } // board__set_y
+
+/**
+ * This function takes a bool value anda  board and sets the board's
+ * no fog value.
+ *
+ * @param no_fog the no_fog value
+ * @param board the board to be configured
+ */
+void board__set_no_fog(bool no_fog, struct Board *board) {
+  board->board_no_fog = no_fog;
+} // board__set_no_fog
 
 /**
  * This function returns the max x value of the passed in board.
@@ -164,6 +175,17 @@ int board__get_x(struct Board *board) {
 int board__get_y(struct Board *board) {
   return board->board_y;
 } // board__get_y
+
+/**
+ * This function retuns the no fog value of the board.
+ *
+ * @param board the board to get the no fog value of
+ * 
+ * @return the no fog value
+ */
+bool board__get_no_fog(struct Board *board) {
+  return board->board_no_fog;
+} // board__get_no_fog
 
 //-----------------------------//
 //   USER COMMAND PROCESSORS   //

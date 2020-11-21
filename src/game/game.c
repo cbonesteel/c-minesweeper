@@ -63,8 +63,7 @@ void game__print_loss() {
  */
 void game__build_game(struct Game *game) {
   // TODO: Take input for board size
-  game->noFog = false;
-  game->won = false;
+  game->end = false;
   board__build_array(10, 10, &game->board);
 
   /* Place mines randomly */
@@ -79,6 +78,8 @@ void game__build_game(struct Game *game) {
     } // while
   } // for
 
+  board__set_no_fog(false, &game->board);
+  
   // TODO: Place mines based on settings
 } // game__build_game
 
@@ -135,3 +136,54 @@ void game__take_game_input(struct Game *game) {
   } // if
   
 } // game__take_game_input
+
+/**
+ * This function runs the play loop for the passed in game.
+ *
+ * @param game the game to be played
+ */
+void game__play(struct Game *game) {
+  while (!game__get_end(game)) {
+    if (board__get_no_fog(&game->board) == true) {
+      board__print_no_fog(&game->board);
+    } else {
+      board__print_board(&game->board);
+    } // if
+
+    printf("\n");
+
+    game__take_game_input(game);
+
+    if (game->board.board_num_mines == 0) {
+      game__print_win();
+      game__set_end(true, game);
+    } // if
+  } // while
+} // game__play
+
+//---------------------//
+//   GETTERS/SETTERS   //
+//---------------------//
+
+/**
+ * This function takes in a bool and a game and sets
+ * end status in game.
+ *
+ * @param end the end status
+ * @param game the game to be set
+ */
+void game__set_end(bool end, struct Game *game) {
+  game->end = end;
+} // game__set_end
+
+/**
+ * This function takes in a game and returns it's end
+ * variable.
+ *
+ * @param game the game to get the end status of
+ *
+ * @return the end status
+ */
+bool game__get_end(struct Game *game) {
+  return game->end;
+} // game__get_end

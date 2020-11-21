@@ -24,7 +24,7 @@
 /**
  * This function prints the welcome screen for the game.
  */
-void game__print_welcome() {
+void menu__print_welcome() {
   FILE *fp;
   fp = fopen("resources/game/welcome.txt", "r");
   char buff[255];

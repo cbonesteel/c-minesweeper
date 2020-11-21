@@ -14,15 +14,18 @@
 
 struct Game {
   struct Board board;
-  bool noFog;
-  bool won;
+  bool end;
 }; // Game
 
 void game__print_win();
 void game__print_loss();
 void game__build_game(struct Game *game);
 void game__take_game_input(struct Game *game);
+void game__play(struct Game *game);
 
+// getters/setters
+void game__set_end(bool end, struct Game *game);
+bool game__get_end(struct Game *game);
 
 
 #endif // GAME_H

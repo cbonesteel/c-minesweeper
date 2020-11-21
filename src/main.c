@@ -21,9 +21,6 @@ int main() {
 
   game__build_game(&game);
   
-  board__place_mine(1, 1, &game.board);
-  board__place_mine(1, 2, &game.board);
-
   board__print_board(&game.board);
   printf("\n");
   board__print_no_fog(&game.board);

@@ -245,14 +245,22 @@ bool board__reveal(int x, int y, struct Board *board) {
 /**
  * This function takes an x and y coordinate and places
  * the mine on the mine_pointer array to keep track of the mines.
+ * Returns true if mine was placed, returns false otherwise.
  *
  * @param x the x coordinate
  * @param y the y coordinate
  * @board the board for the mine to be placed on
+ *
+ * @return true if mine is placed; false otherwise
  */
-void board__place_mine(int x, int y, struct Board *board) {
-  board->mine_pointer[x][y] = true;
-  board->board_num_mines++;
+bool board__place_mine(int x, int y, struct Board *board) {
+  if (board->mine_pointer[x][y] == false) {
+    board->mine_pointer[x][y] = true;
+    board->board_num_mines++;
+    return true;
+  } else {
+    return false;
+  } // if
 } // board__place_mine
 
 //--------------------//

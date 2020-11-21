@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../../inc/board/board.h"
 #include "../../inc/game/game.h"
 #include "../../inc/game/command_processor.h"
@@ -65,6 +66,19 @@ void game__build_game(struct Game *game) {
   game->noFog = false;
   game->won = false;
   board__build_array(10, 10, &game->board);
+
+  /* Place mines randomly */
+  srand(time(0)); // use time for better randomness
+  
+  for (int i = 0; i < 20; i++) { // TODO: Replace < 20 with density calculation
+    bool placed = false;
+    while (!placed) {
+      int x = rand() % board__get_x(&game->board);
+      int y = rand() % board__get_y(&game->board);
+      placed = board__place_mine(x, y, &game->board);
+    } // while
+  } // for
+
   // TODO: Place mines based on settings
 } // game__build_game
 

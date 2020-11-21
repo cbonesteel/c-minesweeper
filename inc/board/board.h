@@ -37,7 +37,7 @@ bool board__flag(int x, int y, struct Board *board);
 bool board__reveal(int x, int y, struct Board *board);
 
 // mine placer
-void board__place_mine(int x, int y, struct Board *board);
+bool board__place_mine(int x, int y, struct Board *board);
 
 // reveal utility
 int board__count_num_adjacent(int x, int y, struct Board *board);

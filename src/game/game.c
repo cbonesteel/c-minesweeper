@@ -63,7 +63,7 @@ void game__print_loss() {
  */
 void game__build_game(struct Game *game) {
   // TODO: Take input for board size
-  game->end = false;
+  game__set_end(false, game);
   board__build_array(10, 10, &game->board);
 
   /* Place mines randomly */
@@ -104,6 +104,7 @@ void game__take_game_input(struct Game *game) {
 
   // Take in command
   printf("Enter a command: ");
+  
   fgets(rawInput, 20, stdin);
 
   // Parse command
@@ -129,7 +130,7 @@ void game__take_game_input(struct Game *game) {
     command_processor__flag(x, y, game);
   } else if (strncmp(input, "h", 1) == 0 || strncmp(input, "help", 4) == 0) {
     command_processor__help();
-  } else if (strncmp(input, "noFog", 5)) {
+  } else if (strncmp(input, "noFog", 5) == 0) {
     command_processor__no_fog(game);
   } else {
     printf("Invalid Command\n"); // TODO: Change when game design is finalized
@@ -144,8 +145,11 @@ void game__take_game_input(struct Game *game) {
  */
 void game__play(struct Game *game) {
   while (!game__get_end(game)) {
+    printf("\n");
+    
     if (board__get_no_fog(&game->board) == true) {
       board__print_no_fog(&game->board);
+      board__set_no_fog(false, &game->board);
     } else {
       board__print_board(&game->board);
     } // if

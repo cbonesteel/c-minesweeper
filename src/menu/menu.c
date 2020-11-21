@@ -33,6 +33,6 @@ void menu__print_welcome() {
     fgets(buff, 255, (FILE*)fp);
     printf("%s", buff );
   } // for
-    
+  
   fclose(fp);
 } // game__print_welcome

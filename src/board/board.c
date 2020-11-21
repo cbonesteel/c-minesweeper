@@ -347,3 +347,43 @@ bool board__contains_mine(int x, int y, struct Board *board) {
     return false;
   } // if
 } // board__contains_mine
+
+//---------------------//
+//   PRINT FUNCTIONS   //
+//---------------------//
+
+/**
+ * This function takes in a board and prints the board to the screen.
+ *
+ * @param board the board to be printed
+ */
+void board__print_board(struct Board *board) {
+  for (int i = board__get_y(board) - 1; i >= 0; i--) {
+    for (int j = 0; j < board__get_x(board); j++) {
+      printf("%c ", board->board_pointer[i][j]);
+      // TODO: modify during final design implementation
+    } // for
+    printf("\n");
+  } // for
+} // board__print_board
+
+/**
+ * This function takes in a board and prints the board to the screen
+ * with mines visable to the user.
+ *
+ * @param board the board to print
+ */
+void board__print_no_fog(struct Board *board) {
+  for (int i = board__get_y(board) - 1; i >= 0; i--) {
+    for (int j = 0; j < board__get_x(board); j++) {
+      if (board->mine_pointer[i][j] == true) {
+        printf("@ ");
+        // TODO: modify during final design implementation
+      } else {
+        printf("%c ", board->board_pointer[i][j]);
+      } // if
+        // TODO: modify during final design implementation
+    } // for
+    printf("\n");
+  } // for
+} // board__print_no_fog

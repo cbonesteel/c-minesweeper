@@ -18,7 +18,6 @@ struct Game {
   bool won;
 }; // Game
 
-void game__print_welcome();
 void game__print_win();
 void game__print_loss();
 void game__build_game(struct Game *game);

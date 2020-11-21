@@ -13,10 +13,15 @@ game.o: build src/game/game.c inc/game/game.h
 	gcc -c src/game/game.c
 	mv game.o build/game/game.o
 
+menu.o: build src/menu/menu.c inc/menu/menu.h
+	gcc -c src/menu/menu.c
+	mv menu.o build/menu/menu.o
+
 build: 
 	mkdir build
 	mkdir build/board
 	mkdir build/game
+	mkdir build/menu
 
 clean:
 	rm -rf build minesweeper-game

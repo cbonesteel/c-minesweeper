@@ -187,6 +187,28 @@ bool board__get_no_fog(struct Board *board) {
   return board->board_no_fog;
 } // board__get_no_fog
 
+/**
+ * This function returns the number of unflagged mines.
+ *
+ * @param board the board to return the value on
+ *
+ * @return the number of mines
+ */
+int board__get_num_mines(struct Board *board) {
+  return board->board_num_mines;
+} // board__get_num_mines
+
+/**
+ * This function returns the number of flagged tiles.
+ *
+ * @param board the board to return the value on
+ *
+ * @return the number of flags
+ */
+int board__get_num_flags(struct Board *board) {
+  return board->board_num_flags;
+} // board__get_num_flags
+
 //-----------------------------//
 //   USER COMMAND PROCESSORS   //
 //-----------------------------//
@@ -205,6 +227,7 @@ bool board__get_no_fog(struct Board *board) {
 bool board__flag(int x, int y, struct Board *board) {
   if (board->reveal_pointer[x][y] == 0) {
     board->board_pointer[x][y] = 'F';
+    board->board_num_flags++;
     return true;
   } else {
     return false;
@@ -227,6 +250,9 @@ bool board__flag(int x, int y, struct Board *board) {
  */
 bool board__reveal(int x, int y, struct Board *board) {
   if (board->reveal_pointer[x][y] == false) {
+    if (board->board_pointer[x][y] == 'F') {
+      board->board_num_flags--;
+    } // if
     board->board_pointer[x][y] = board__count_num_adjacent(x, y, board) + '0';
     board->reveal_pointer[x][y] = true;
     

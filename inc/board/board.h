@@ -17,6 +17,7 @@ struct Board {
   int board_x;
   int board_y;
   int board_num_mines;
+  int board_num_flags;
   bool board_no_fog;
 }; // board
 
@@ -31,6 +32,8 @@ void board__set_no_fog(bool no_fog, struct Board *board);
 int board__get_x(struct Board *board);
 int board__get_y(struct Board *board);
 bool board__get_no_fog(struct Board *board);
+int board__get_num_mines(struct Board *board);
+int board__get_num_flags(struct Board *board);
 
 // user command processors
 bool board__flag(int x, int y, struct Board *board);

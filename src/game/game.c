@@ -158,7 +158,9 @@ void game__play(struct Game *game) {
 
     game__take_game_input(game);
 
-    if (game->board.board_num_mines == 0) {
+    if (board__get_num_mines(&game->board) == 0 &&
+        board__get_num_flags(&game->board) == 20) {
+      // TODO: Change to check for number of flags for original num of mines
       game__print_win();
       game__set_end(true, game);
     } // if

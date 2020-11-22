@@ -1,7 +1,7 @@
 # c-minesweeper
 
 ![Project Status: In Development](https://img.shields.io/badge/Project%20Status-In%20Development-brightgreen)
-![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-brightgreen)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-brightgreen)
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-brightgreen)
 
 ## Project Description
@@ -51,10 +51,155 @@ system:c-minesweeper user$ make clean
 rm -rf build minesweeper-game
 ```
 
+## How to Play (In Release 0.1.0)
+
+### Starting a game
+When you run the game you will be met with a simple welcome screen. To start the game
+simply enter Y/Yes to start a 10x10 game with 20 mines. The game will then print the board
+as shown below.
+``` console
+    __  ____           _____                                  
+   /  |/  (_)___  ___ / ___/      _____  ___  ____  ___  _____
+  / /|_/ / / __ \/ _ \\__ \ | /| / / _ \/ _ \/ __ \/ _ \/ ___/
+ / /  / / / / / /  __/__/ / |/ |/ /  __/  __/ /_/ /  __/ /    
+/_/  /_/_/_/ /_/\___/____/|__/|__/\___/\___/ .___/\___/_/     
+                              coded in C  /_/ v. 0.0.1
+
+Start New Game? Y/N: Y
+
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+
+Enter a command: 
+```
+
+### Help Command
+If you forget the command structures during a game, you can type h/help to print
+all of the available commands. The output will show like below.
+``` console
+Enter a command: help
+Commands:
+	r/reveal [x] [y]	Reveal a square
+	m/mark [x] [y]		Flag a square
+	h/help        		Print help
+```
+
+### Reveal
+The reveal command is the first command that you will need in order to start finding mines.
+Typing r/reveal and then the corresponding row and column will reveal a tile and print how many
+mines are in adjacent tiles (This should be r/reveal [row] [col]. Any documentation that says [x] [y]
+will be updated in the next release). A basic example of a reveal is shown below.
+``` console
+Enter a command: r 0 0
+
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+1 * * * * * * * * *
+```
+As shown above, the tile in row 0, column 0 was revealed and revealed that there is one mine in
+an adjacent tile, including diagnols. The reveal function is currently not recursive, meaning
+revealing a tile with no adjacent mines will not reveal all tiles around it until there are no
+more tiles with no adjacent mines. An example is shown below.
+``` console
+Enter a command: r 2 1
+
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* 0 * * * * * * * * 
+* * * * * * * * * * 
+1 * * * * * * * * *
+```
+
+### Flag
+Flagging is the essential tool to win the game once you find where the mines are. In order to win
+all mines must be flagged but no additional flags must be present. This means, in this release, you
+will need 20 flags to win. All tiles needing to be revealed is NOT a requirement to win. This means
+the board below IS a valid win condition.
+``` console
+F * * * * * * * * F 
+* * F F * * * * * * 
+F * * * * F * * * F 
+* * * F F * * * * * 
+* * * * F * * * * F 
+F * * * * * * * * * 
+* * * * * * F * * * 
+* * F * * * * * * * 
+* F F * * * * * * F 
+* * * F F * * * F * 
+```
+However, this is NOT a valid win condition as there are 21 flags. Tile (0,0) is flagged here unlike
+the last output.
+``` console
+F * * * * * * * * F 
+* * F F * * * * * * 
+F * * * * F * * * F 
+* * * F F * * * * * 
+* * * * F * * * * F 
+F * * * * * * * * * 
+* * * * * * F * * * 
+* * F * * * * * * * 
+* F F * * * * * * F 
+F * * F F * * * F * 
+```
+The flag command works exactly like the reveal function, being used as followed. Both f and flag is valid
+command syntax.
+``` console
+Enter a command: f 1 1
+
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* F * * * * * * * * 
+* * * * * * * * * *
+```
+
+### No Fog
+No Fog is a hidden command used for debugging. This command removes the fog of war and shows all mines
+on the board for one board print. The command and output is shown below.
+``` console
+Enter a command: noFog
+
+@ * * * * * * * * @ 
+* * @ @ * * * * * * 
+@ * * * * @ * * * @ 
+* * * @ @ * * * * * 
+* * * * @ * * * * @ 
+@ * * * * * * * * * 
+* * * * * * @ * * * 
+* * @ * * * * * * * 
+* @ @ * * * * * * @ 
+* * * @ @ * * * @ * 
+```
 
 ## Roadmap
 
 ### Milestone 0.1
+***RELEASED ON 22 NOV 2020***
 * Create Board
 * Create Welcome Text
 * Get basic game functions working

@@ -6,15 +6,18 @@
 
 ## Table of Contents
 [Project Description](https://github.com/cbonesteel/c-minesweeper#project-description)
+
 [Installing this Repository](https://github.com/cbonesteel/c-minesweeper#installing-this-repository)
 * [Dependencies](https://github.com/cbonesteel/c-minesweeper#dependencies)
 * [Installing and Running](https://github.com/cbonesteel/c-minesweeper#installation-and-running)
+
 [How to Play (In Release 0.1.0)](https://github.com/cbonesteel/c-minesweeper#how-to-play-in-release-010)
 * [Starting a game](https://github.com/cbonesteel/c-minesweeper#starting-a-game)
 * [Help Command](https://github.com/cbonesteel/c-minesweeper#help-command)
 * [Reveal](https://github.com/cbonesteel/c-minesweeper#reveal)
 * [Flag](https://github.com/cbonesteel/c-minesweeper#flag)
 * [No Fog](https://github.com/cbonesteel/c-minesweeper#no-fog)
+
 [Roadmap](https://github.com/cbonesteel/c-minesweeper#roadmap)
 * [Milestone 0.1](https://github.com/cbonesteel/c-minesweeper#milestone-01)
 * [Milestone 0.2](https://github.com/cbonesteel/c-minesweeper#milestone-02)

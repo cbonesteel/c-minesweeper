@@ -132,6 +132,10 @@ void game__take_game_input(struct Game *game) {
     command_processor__help();
   } else if (strncmp(input, "noFog", 5) == 0) {
     command_processor__no_fog(game);
+  } else if (strncmp(input, "q", 1) == 0 || strncmp(input, "quit", 4) == 0) {
+    command_processor__quit(game);
+  } else if (strncmp(input, "c", 1) == 0 || strncmp(input, "close", 5) == 0) {
+    command_processor__close(game);
   } else {
     printf("Invalid Command\n"); // TODO: Change when game design is finalized
   } // if

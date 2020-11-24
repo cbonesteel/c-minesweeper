@@ -94,9 +94,11 @@ bool command_processor__flag(int x, int y, struct Game *game) {
  */
 void command_processor__help() {
   printf("Commands:\n");
-  printf("\tr/reveal [x] [y]\tReveal a square\n");
-  printf("\tm/mark [x] [y]\t\tFlag a square\n");
+  printf("\tr/reveal [row] [col]\tReveal a square\n");
+  printf("\tm/mark [row] [col]\t\tFlag a square\n");
   printf("\th/help        \t\tPrint help\n");
+  printf("\tq/quit        \t\tQuit to menu");
+  printf("\tc/close       \t\tQuit the program");
 } // command_processor__help
 
 /**
@@ -113,3 +115,21 @@ bool command_processor__no_fog(struct Game *game) {
   
   return true;
 } // command_processor__no_fog
+
+/**
+ * This function handles the game quitting to the main menu.
+ *
+ * @param game the game to be quit
+ */
+void command_processor__quit(struct Game *game) {
+  game__set_end(true, game);
+} // command_processor__quit
+
+/**
+ * This function handles the program closing completely.
+ *
+ * @param game the game to be quit
+ */
+void command_processor__close(struct Game *game) {
+  game__set_end(true, game);
+} // command_processor__close

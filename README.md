@@ -16,6 +16,7 @@
 * [Help Command](https://github.com/cbonesteel/c-minesweeper#help-command)
 * [Reveal](https://github.com/cbonesteel/c-minesweeper#reveal)
 * [Flag](https://github.com/cbonesteel/c-minesweeper#flag)
+* [Guess](https://github.com/cbonesteel/c-minesweeper#guess)
 * [No Fog](https://github.com/cbonesteel/c-minesweeper#no-fog)
 
 [Roadmap](https://github.com/cbonesteel/c-minesweeper#roadmap)
@@ -59,11 +60,19 @@ system:c-minesweeper user$ make
 mkdir build
 mkdir build/board
 mkdir build/game
+mkdir build/menu
+mkdir build/program
 gcc -c src/game/game.c
 mv game.o build/game/game.o
 gcc -c src/board/board.c
 mv board.o build/board/board.o
-gcc -o minesweeper-game src/main.c build/board/board.o build/game/game.o
+gcc -c src/game/command_processor.c
+mv command_processor.o build/game/command_processor.o
+gcc -c src/menu/menu.c
+mv menu.o build/menu/menu.o
+gcc -c src/program/program.c
+mv program.o build/program/program.o
+gcc -o minesweeper-game src/main.c build/board/board.o build/game/game.o build/game/command_processor.o build/menu/menu.o build/program/program.o
 ```
 3. To run, simply execute the generated executable minesweeper-game as follows.
 ``` console
@@ -111,9 +120,12 @@ all of the available commands. The output will show like below.
 ``` console
 Enter a command: help
 Commands:
-	r/reveal [x] [y]	Reveal a square
-	m/mark [x] [y]		Flag a square
+	r/reveal [row] [col]	Reveal a square
+	m/mark [row] [col]		Flag a square
+	g/guess [row] [col]		Guess a square
 	h/help        		Print help
+	q/quit        		Quit to menu
+	c/close       		Quit the program
 ```
 
 ### Reveal
@@ -189,6 +201,24 @@ The flag command works exactly like the reveal function, being used as followed.
 command syntax.
 ``` console
 Enter a command: f 1 1
+
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* F * * * * * * * * 
+* * * * * * * * * *
+```
+
+### Guess
+You can guess where a mine might be without acutally flagging it by using both g and guess. A row
+and column number are also required to run the command. The output will look like the output below.
+``` console
+Enter a command: g 1 1
 
 * * * * * * * * * * 
 * * * * * * * * * * 

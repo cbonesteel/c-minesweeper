@@ -15,6 +15,9 @@
 #include "../../inc/game/game.h"
 #include "../../inc/game/command_processor.h"
 
+/* Global Variables */
+extern bool running;
+
 /**
  * This function processes a reveal command from the user. This function
  * takes in the x and y values of the square to be revealed as well as the
@@ -34,10 +37,10 @@
 bool command_processor__reveal(int x, int y, struct Game *game) {
   /* Checks if x and y are in bounds */
   if (x >= board__get_x(&game->board)) {
-    printf("x is out of bounds\n"); // TODO: Change when game design is finalized
+    printf("\nx is out of bounds\n"); // TODO: Change when game design is finalized
     return false;
   } else if (y >= board__get_y(&game->board)) {
-    printf("y is out of bounds\n"); // TODO: Change when game design is finalized
+    printf("\ny is out of bounds\n"); // TODO: Change when game design is finalized
     return false;
   } // if
 
@@ -71,14 +74,14 @@ bool command_processor__reveal(int x, int y, struct Game *game) {
 bool command_processor__flag(int x, int y, struct Game *game) {
   /* Checks if x and y are in bounds */
   if (x > board__get_x(&game->board)) {
-    printf("x is out of bounds\n"); // TODO: Change when game design is finalized
+    printf("\nx is out of bounds\n"); // TODO: Change when game design is finalized
     return false;
   } else if (y > board__get_y(&game->board)) {
-    printf("y is out of bounds\n"); // TODO: Change when game design is finalized
+    printf("\ny is out of bounds\n"); // TODO: Change when game design is finalized
     return false;
   } // if
 
-  /* Check if there is a mine at the spot to be falgged */
+  /* Check if there is a mine at the spot to be flaged */
   if (board__contains_mine(x, y, &game->board) == true) {
     game->board.board_num_mines--;
   } // if
@@ -90,12 +93,42 @@ bool command_processor__flag(int x, int y, struct Game *game) {
 } // command_processor__flag
 
 /**
+ * This function processes a guess command from the user. This function
+ * takes in an x and a y as well as the game to be modified. The function
+ * first checks that x and y are in bounds. If they are not, it prints
+ * an error message to the user and returns false. Otherwise, it will place 
+ * a ? on a tile so long as it has not been revealed and return true.
+ *
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * @param game the game to be modified
+ *
+ * @return true if successful; false otherwise
+ */
+bool command_processor__guess(int x, int y, struct Game *game) {
+  /* Checks if x and y are in bounds */
+  if (x >= board__get_x(&game->board)) {
+    printf("\nx is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
+  } else if (y >= board__get_y(&game->board)) {
+    printf("\ny is out of bounds\n"); // TODO: Change when game design is finalized
+    return false;
+  } // if
+  
+  /* If all prior checks pass, guess square*/
+  board__guess(x, y, &game->board);
+
+  return true;
+} // command_processor__guess
+
+/**
  * This function prints the help screen for the user.
  */
 void command_processor__help() {
   printf("Commands:\n");
   printf("\tr/reveal [row] [col]\tReveal a square\n");
   printf("\tm/mark [row] [col]\t\tFlag a square\n");
+  printf("\tg/guess [row] [col]\t\tGuess a square");
   printf("\th/help        \t\tPrint help\n");
   printf("\tq/quit        \t\tQuit to menu");
   printf("\tc/close       \t\tQuit the program");
@@ -132,4 +165,5 @@ void command_processor__quit(struct Game *game) {
  */
 void command_processor__close(struct Game *game) {
   game__set_end(true, game);
+  running = false;
 } // command_processor__close

@@ -114,15 +114,15 @@ void game__take_game_input(struct Game *game) {
 
   // Checks if input requiring coordinates is in form [input] [x] [y]
   if ((xChar == NULL || yChar == NULL) &&
-      (strncmp(input, "r", 1) == 0 || strncmp(input, "f", 1) == 0)) {
+      (strncmp(input, "r", 1) == 0 || strncmp(input, "f", 1) == 0 || strncmp(input, "g", 1) == 0)) {
     // Makes input invalid
     input = "x";
-  } else if (strncmp(input, "r", 1) == 0 || strncmp(input, "f", 1) == 0) {
+  } else if (strncmp(input, "r", 1) == 0 || strncmp(input, "f", 1) == 0 || strncmp(input, "g", 1) == 0) {
     // Sets x and y
     x = atoi(xChar);
     y = atoi(yChar);
   } // if
-
+  
   // Processes Input by calling correct functions
   if (strncmp(input, "r", 1) == 0 || strncmp(input, "reveal", 6) == 0) {
     command_processor__reveal(x, y, game);
@@ -130,6 +130,8 @@ void game__take_game_input(struct Game *game) {
     command_processor__flag(x, y, game);
   } else if (strncmp(input, "h", 1) == 0 || strncmp(input, "help", 4) == 0) {
     command_processor__help();
+  } else if (strncmp(input, "g", 1) == 0 || strncmp(input, "guess", 5) == 0) {
+    command_processor__guess(x, y, game);
   } else if (strncmp(input, "noFog", 5) == 0) {
     command_processor__no_fog(game);
   } else if (strncmp(input, "q", 1) == 0 || strncmp(input, "quit", 4) == 0) {
@@ -137,7 +139,7 @@ void game__take_game_input(struct Game *game) {
   } else if (strncmp(input, "c", 1) == 0 || strncmp(input, "close", 5) == 0) {
     command_processor__close(game);
   } else {
-    printf("Invalid Command\n"); // TODO: Change when game design is finalized
+    printf("\nInvalid Command\n"); // TODO: Change when game design is finalized
   } // if
   
 } // game__take_game_input

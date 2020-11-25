@@ -16,26 +16,9 @@
 #include "../inc/game/game.h"
 #include "../inc/game/command_processor.h"
 #include "../inc/menu/menu.h"
-
+#include "../inc/program/program.h"
 int main() {
-  struct Game game;
-  char input[4];
-    
-  // TODO: Move Much of this to helper methods
-  // main should contain one call to a run function
-  menu__print_welcome();
-  
-  printf("\nStart New Game? Y/N: ");
-  
-  fgets(input, 4, stdin);
-    
-  if (strncmp(input, "N", 1) == 0 || strncmp(input, "n", 1) == 0 ||
-      strncmp(input, "No", 2) == 0 || strncmp(input, "no", 2) == 0) {
-    return 0;
-  } else {
-    game__build_game(&game);
-    game__play(&game);
-  } // if
+  program__run();
   
   return 0;
 } // main

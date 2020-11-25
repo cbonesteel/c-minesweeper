@@ -1,7 +1,7 @@
 # c-minesweeper
 
 ![Project Status: In Development](https://img.shields.io/badge/Project%20Status-In%20Development-brightgreen)
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-brightgreen)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-brightgreen)
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-brightgreen)
 
 ## Table of Contents

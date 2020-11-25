@@ -225,7 +225,7 @@ int board__get_num_flags(struct Board *board) {
  * @return true if flag is successful; false otherwise
  */
 bool board__flag(int x, int y, struct Board *board) {
-  if (board->reveal_pointer[x][y] == 0) {
+  if (board->reveal_pointer[x][y] == false) {
     board->board_pointer[x][y] = 'F';
     board->board_num_flags++;
     return true;
@@ -263,6 +263,28 @@ bool board__reveal(int x, int y, struct Board *board) {
     return false;
   } // if
 } // board__reveal
+
+/**
+ * This function places a guess marker on the specified position.
+ * This function will only do this if the spot has yet to be revealed.
+ * Returns true if successful, false otherwise.
+ *
+ * @param x the x coordinate
+ * @param y the y coordinate
+ * @param board the board to be modified
+ *
+ * @return true if successful; false otherwise
+ */
+bool board__guess(int x, int y, struct Board *board) {
+  /* Check if the spot has already been revealed */
+  if (board->reveal_pointer[x][y] == true) {
+    printf("\nTile already revealed\n"); // TODO: Change when game design is finalized
+    return false;
+  } else {
+    board->board_pointer[x][y] = '?';
+    return true;
+  } // else
+} // board__guess
 
 //-----------------//
 //   MINE PLACER   //

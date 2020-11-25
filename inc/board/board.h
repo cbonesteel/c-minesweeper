@@ -38,7 +38,7 @@ int board__get_num_flags(struct Board *board);
 // user command processors
 bool board__flag(int x, int y, struct Board *board);
 bool board__reveal(int x, int y, struct Board *board);
-
+bool board__guess(int x, int y, struct Board *board);
 // mine placer
 bool board__place_mine(int x, int y, struct Board *board);
 

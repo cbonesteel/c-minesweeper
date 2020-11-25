@@ -263,6 +263,7 @@ Enter a command: noFog
   * No fog (Hidden Command)
 
 ### Milestone 0.2
+***RELEASED ON 24 NOV 2020***
 * Create game loop to be able to play many games on one run
 * Add extra game functions
   * Guess

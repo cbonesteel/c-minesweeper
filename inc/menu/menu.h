@@ -13,6 +13,7 @@
 #include "../game/command_processor.h"
 #include "../board/board.h"
 
+bool menu__take_input();
 void menu__print_welcome();
 
 #endif // MENU_H

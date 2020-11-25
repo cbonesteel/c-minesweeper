@@ -15,6 +15,9 @@
 #include "../../inc/game/game.h"
 #include "../../inc/game/command_processor.h"
 
+/* Global Variables */
+extern bool running;
+
 /**
  * This function processes a reveal command from the user. This function
  * takes in the x and y values of the square to be revealed as well as the
@@ -132,4 +135,5 @@ void command_processor__quit(struct Game *game) {
  */
 void command_processor__close(struct Game *game) {
   game__set_end(true, game);
+  running = false;
 } // command_processor__close

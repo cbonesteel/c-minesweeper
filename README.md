@@ -235,6 +235,7 @@ Enter a command: noFog
 ### Milestone 0.2
 * Create game loop to be able to play many games on one run
 * Add extra game functions
+  * Guess
   * Quit game to menu
   * Quit game
 

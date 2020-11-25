@@ -128,10 +128,10 @@ void command_processor__help() {
   printf("Commands:\n");
   printf("\tr/reveal [row] [col]\tReveal a square\n");
   printf("\tm/mark [row] [col]\t\tFlag a square\n");
-  printf("\tg/guess [row] [col]\t\tGuess a square");
+  printf("\tg/guess [row] [col]\t\tGuess a square\n");
   printf("\th/help        \t\tPrint help\n");
-  printf("\tq/quit        \t\tQuit to menu");
-  printf("\tc/close       \t\tQuit the program");
+  printf("\tq/quit        \t\tQuit to menu\n");
+  printf("\tc/close       \t\tQuit the program\n");
 } // command_processor__help
 
 /**

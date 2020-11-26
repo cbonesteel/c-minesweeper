@@ -2,7 +2,13 @@
  * @file program.c
  * @brief Implementation for the program functions.
  *
- * Doc
+ * This is the main program file, that contains all the code to run the program
+ * on a base level. From start to stop and the loops inbetween.
+ *
+ * Design Philosophy:
+ *
+ * The code in this function will be called from main or other places to assist
+ * with running the program.
  *
  * @author Cameron Bonesteel
  * @date November 24, 2020

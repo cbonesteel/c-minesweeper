@@ -2,7 +2,13 @@
  * @file command_processor.c
  * @brief Implementation for command processes.
  *
- * Doc
+ * The command processor is used to process all game and menu commands.
+ *
+ * Design Philosophy:
+ *
+ * Having one place to take all command inputs and process them in the
+ * appropriate ways will greatly increase the program's source code
+ * organization. 
  *
  * @author
  * @date November 11, 2020

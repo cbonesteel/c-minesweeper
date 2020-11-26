@@ -11,7 +11,7 @@
 * [Dependencies](https://github.com/cbonesteel/c-minesweeper#dependencies)
 * [Installing and Running](https://github.com/cbonesteel/c-minesweeper#installation-and-running)
 
-[How to Play (In Release 0.1.0)](https://github.com/cbonesteel/c-minesweeper#how-to-play-in-release-010)
+[How to Play (In Release 0.2.1)](https://github.com/cbonesteel/c-minesweeper#how-to-play-in-release-021)
 * [Starting a game](https://github.com/cbonesteel/c-minesweeper#starting-a-game)
 * [Help Command](https://github.com/cbonesteel/c-minesweeper#help-command)
 * [Reveal](https://github.com/cbonesteel/c-minesweeper#reveal)
@@ -84,7 +84,7 @@ system:c-minesweeper user$ make clean
 rm -rf build minesweeper-game
 ```
 
-## How to Play (In Release 0.1.0)
+## How to Play (In Release 0.2.1)
 
 ### Starting a game
 When you run the game you will be met with a simple welcome screen. To start the game
@@ -96,7 +96,7 @@ as shown below.
   / /|_/ / / __ \/ _ \\__ \ | /| / / _ \/ _ \/ __ \/ _ \/ ___/
  / /  / / / / / /  __/__/ / |/ |/ /  __/  __/ /_/ /  __/ /    
 /_/  /_/_/_/ /_/\___/____/|__/|__/\___/\___/ .___/\___/_/     
-                              coded in C  /_/ v. 0.1.0
+                              coded in C  /_/ v. 0.2.1
 
 Start New Game? Y/N: Y
 

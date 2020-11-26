@@ -83,8 +83,8 @@ bool board__build_array(int width, int height, struct Board *board) {
     } // for
   } // for
 
-  board__set_x(width, board);
-  board__set_y(height, board);
+  board__set_x(height, board);
+  board__set_y(width, board);
 
   return true;
 } // board__build_array
@@ -414,9 +414,9 @@ bool board__contains_mine(int x, int y, struct Board *board) {
  * @param board the board to be printed
  */
 void board__print_board(struct Board *board) {
-  for (int i = board__get_y(board) - 1; i >= 0; i--) {
+  for (int i = board__get_x(board) - 1; i >= 0; i--) {
     printf("%d ", i);
-    for (int j = 0; j < board__get_x(board); j++) {
+    for (int j = 0; j < board__get_y(board); j++) {
       printf("[%c]", board->board_pointer[i][j]);
       // TODO: modify during final design implementation
     } // for
@@ -425,7 +425,7 @@ void board__print_board(struct Board *board) {
 
   printf("   "); // adjust based on p-value
   
-  for (int i = 0; i < board__get_x(board); i++) {
+  for (int i = 0; i < board__get_y(board); i++) {
     printf("%d  ", i); // adjust based on p-value
   } // for
 } // board__print_board
@@ -437,8 +437,8 @@ void board__print_board(struct Board *board) {
  * @param board the board to print
  */
 void board__print_no_fog(struct Board *board) {
-  for (int i = board__get_y(board) - 1; i >= 0; i--) {
-    for (int j = 0; j < board__get_x(board); j++) {
+  for (int i = board__get_x(board) - 1; i >= 0; i--) {
+    for (int j = 0; j < board__get_y(board); j++) {
       if (board->mine_pointer[i][j] == true) {
         printf("[@]");
         // TODO: modify during final design implementation

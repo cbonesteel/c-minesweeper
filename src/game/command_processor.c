@@ -43,10 +43,10 @@ extern bool running;
 bool command_processor__reveal(int x, int y, struct Game *game) {
   /* Checks if x and y are in bounds */
   if (x >= board__get_x(&game->board)) {
-    printf("\nx is out of bounds\n"); // TODO: Change when game design is finalized
+    printf("\nrow is out of bounds\n"); // TODO: Change when game design is finalized
     return false;
   } else if (y >= board__get_y(&game->board)) {
-    printf("\ny is out of bounds\n"); // TODO: Change when game design is finalized
+    printf("\ncolumn is out of bounds\n"); // TODO: Change when game design is finalized
     return false;
   } // if
 

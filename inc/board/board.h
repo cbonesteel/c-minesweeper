@@ -49,5 +49,6 @@ bool board__contains_mine(int x, int y, struct Board *board);
 // print functions
 void board__print_board(struct Board *board);
 void board__print_no_fog(struct Board *board);
+int board__find_p(struct Board *board);
 
 #endif // BOARD_H

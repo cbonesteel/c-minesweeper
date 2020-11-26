@@ -64,7 +64,7 @@ void game__print_loss() {
 void game__build_game(struct Game *game) {
   // TODO: Take input for board size
   game__set_end(false, game);
-  board__build_array(10, 10, &game->board);
+  board__build_array(8, 12, &game->board); // only works when x < y
 
   /* Place mines randomly */
   srand(time(0)); // use time for better randomness
@@ -122,7 +122,7 @@ void game__take_game_input(struct Game *game) {
     x = atoi(xChar);
     y = atoi(yChar);
   } // if
-  
+
   // Processes Input by calling correct functions
   if (strncmp(input, "r", 1) == 0 || strncmp(input, "reveal", 6) == 0) {
     command_processor__reveal(x, y, game);

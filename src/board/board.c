@@ -415,18 +415,37 @@ bool board__contains_mine(int x, int y, struct Board *board) {
  */
 void board__print_board(struct Board *board) {
   for (int i = board__get_x(board) - 1; i >= 0; i--) {
-    printf("%d ", i);
+    if (i >= 10) {
+      printf("%d ", i);
+    } else {
+      printf(" %d ", i);
+    } // if
     for (int j = 0; j < board__get_y(board); j++) {
-      printf("[%c]", board->board_pointer[i][j]);
-      // TODO: modify during final design implementation
+      if (board__get_y(board) > 10) {
+        printf("[ %c ]", board->board_pointer[i][j]);
+      } else {
+        printf("[%c]", board->board_pointer[i][j]);
+      } // if
     } // for
     printf("\n");
   } // for
 
-  printf("   "); // adjust based on p-value
+  if (board__get_y(board) > 10) {
+    printf("     "); 
+  } else {
+    printf("    "); 
+  } // if
   
   for (int i = 0; i < board__get_y(board); i++) {
-    printf("%d  ", i); // adjust based on p-value
+    if (board__get_y(board) > 10) {
+      if (i < 10) {
+        printf("%d    ", i);
+      } else {
+        printf("%d   ", i);
+      } // if
+    } else {
+      printf("%d  ", i);
+    } // if
   } // for
 } // board__print_board
 
@@ -438,29 +457,44 @@ void board__print_board(struct Board *board) {
  */
 void board__print_no_fog(struct Board *board) {
   for (int i = board__get_x(board) - 1; i >= 0; i--) {
+    if (i >= 10) {
+      printf("%d ", i);
+    } else {
+      printf(" %d ", i);
+    } // if
     for (int j = 0; j < board__get_y(board); j++) {
-      if (board->mine_pointer[i][j] == true) {
-        printf("[@]");
-        // TODO: modify during final design implementation
+      if (board__get_y(board) > 10) {
+        if (board->mine_pointer[i][j] == true) {
+          printf("[ @ ]");
+        } else {
+          printf("[ %c ]", board->board_pointer[i][j]);
+        } // if
       } else {
-        printf("[%c]", board->board_pointer[i][j]);
+        if (board->mine_pointer[i][j] == true) {
+          printf("[@]");
+        } else {
+          printf("[%c]", board->board_pointer[i][j]);
+        } // if
       } // if
-        // TODO: modify during final design implementation
     } // for
     printf("\n");
   } // for
+
+  if (board__get_y(board) > 10) {
+    printf("     "); 
+  } else {
+    printf("    "); 
+  } // if
+  
+  for (int i = 0; i < board__get_y(board); i++) {
+    if (board__get_y(board) > 10) {
+      if (i < 10) {
+        printf("%d    ", i);
+      } else {
+        printf("%d   ", i);
+      } // if
+    } else {
+      printf("%d  ", i);
+    } // if
+  } // for
 } // board__print_no_fog
-
-
-/**
- * This function takes a board and finds the baord's "p-value".
- * That is the value required to properly format the board based
- * on the number of columns present.
- *
- * @param board the board to find p-value of
- *
- * @int the p-value
- */
-int board__find_p(struct Board *board) {
-  return 0;
-} // board__find_p

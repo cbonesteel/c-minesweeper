@@ -64,7 +64,7 @@ void game__print_loss() {
 void game__build_game(struct Game *game) {
   // TODO: Take input for board size
   game__set_end(false, game);
-  board__build_array(9, 8, &game->board); // only works when x < y
+  board__build_array(10, 10, &game->board);
   
   /* Place mines randomly */
   srand(time(0)); // use time for better randomness

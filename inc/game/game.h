@@ -15,9 +15,10 @@
 struct Game {
   struct Board board;
   bool end;
+  int turns;
 }; // Game
 
-void game__print_win();
+void game__print_win(struct Game *game);
 void game__print_loss();
 void game__build_game(struct Game *game);
 void game__take_game_input(struct Game *game);

@@ -25,16 +25,23 @@
 /**
  * This function prints the win screen for the game.
  */
-void game__print_win() {
+void game__print_win(struct Game *game) {
   FILE *fp;
   fp = fopen("resources/game/win.txt", "r");
   char buff[255];
 
-  for (int i = 0; i < 9; ++i) {
+  for (int i = 0; i < 10; ++i) {
     fgets(buff, 255, (FILE*)fp);
     printf("%s", buff );
   } // for
-    
+
+  double board_size = board__get_x(&game->board) * board__get_y(&game->board);
+  double turns_count = game->turns;
+  
+  double score = (board_size / turns_count) * 100.0;
+
+  printf("%f", score);
+
   fclose(fp);
 } // game__print_win
 
@@ -50,7 +57,7 @@ void game__print_loss() {
     fgets(buff, 255, (FILE*)fp);
     printf("%s", buff );
   } // for
-    
+  
   fclose(fp);
 } // game__print_loss
 
@@ -79,6 +86,8 @@ void game__build_game(struct Game *game) {
   } // for
 
   board__set_no_fog(false, &game->board);
+
+  game->turns = 0;
   
   // TODO: Place mines based on settings
 } // game__build_game
@@ -130,6 +139,7 @@ void game__take_game_input(struct Game *game) {
     command_processor__flag(x, y, game);
   } else if (strncmp(input, "h", 1) == 0 || strncmp(input, "help", 4) == 0) {
     command_processor__help();
+    game->turns--;
   } else if (strncmp(input, "g", 1) == 0 || strncmp(input, "guess", 5) == 0) {
     command_processor__guess(x, y, game);
   } else if (strncmp(input, "noFog", 5) == 0) {
@@ -140,7 +150,10 @@ void game__take_game_input(struct Game *game) {
     command_processor__close(game);
   } else {
     printf("\nInvalid Command\n"); // TODO: Change when game design is finalized
+    game->turns--;
   } // if
+
+  game->turns++;
   
 } // game__take_game_input
 
@@ -152,7 +165,8 @@ void game__take_game_input(struct Game *game) {
 void game__play(struct Game *game) {
   while (!game__get_end(game)) {
     printf("\n");
-    
+
+    printf("Turn: %d\n", game->turns);
     if (board__get_no_fog(&game->board) == true) {
       board__print_no_fog(&game->board);
       board__set_no_fog(false, &game->board);
@@ -167,7 +181,7 @@ void game__play(struct Game *game) {
     if (board__get_num_mines(&game->board) == 0 &&
         board__get_num_flags(&game->board) == 20) {
       // TODO: Change to check for number of flags for original num of mines
-      game__print_win();
+      game__print_win(game);
       game__set_end(true, game);
     } // if
   } // while

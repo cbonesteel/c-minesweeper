@@ -1,7 +1,7 @@
 # c-minesweeper
 
 ![Project Status: In Development](https://img.shields.io/badge/Project%20Status-In%20Development-brightgreen)
-![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-brightgreen)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-brightgreen)
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-brightgreen)
 
 ## Table of Contents
@@ -11,7 +11,7 @@
 * [Dependencies](https://github.com/cbonesteel/c-minesweeper#dependencies)
 * [Installing and Running](https://github.com/cbonesteel/c-minesweeper#installation-and-running)
 
-[How to Play (In Release 0.2.1)](https://github.com/cbonesteel/c-minesweeper#how-to-play-in-release-021)
+[How to Play (In Release 0.3.0)](https://github.com/cbonesteel/c-minesweeper#how-to-play-in-release-021)
 * [Starting a game](https://github.com/cbonesteel/c-minesweeper#starting-a-game)
 * [Help Command](https://github.com/cbonesteel/c-minesweeper#help-command)
 * [Reveal](https://github.com/cbonesteel/c-minesweeper#reveal)
@@ -26,7 +26,7 @@
 * [Milestone 0.4](https://github.com/cbonesteel/c-minesweeper#milestone-04)
 * [Milestone 0.5](https://github.com/cbonesteel/c-minesweeper#milestone-05)
 * [Milestone 0.6](https://github.com/cbonesteel/c-minesweeper#milestone-06)
-
+* [Milestone 0.7](https://github.com/cbonesteel/c-minesweeper#milestone-07)
 
 ## Project Description
 This project is a personal programming project with a focus on learning how to use C. The
@@ -84,7 +84,7 @@ system:c-minesweeper user$ make clean
 rm -rf build minesweeper-game
 ```
 
-## How to Play (In Release 0.2.1)
+## How to Play (In Release 0.3.0)
 
 ### Starting a game
 When you run the game you will be met with a simple welcome screen. To start the game
@@ -96,22 +96,23 @@ as shown below.
   / /|_/ / / __ \/ _ \\__ \ | /| / / _ \/ _ \/ __ \/ _ \/ ___/
  / /  / / / / / /  __/__/ / |/ |/ /  __/  __/ /_/ /  __/ /    
 /_/  /_/_/_/ /_/\___/____/|__/|__/\___/\___/ .___/\___/_/     
-                              coded in C  /_/ v. 0.2.1
+                              coded in C  /_/ v. 0.3.0
 
 Start New Game? Y/N: Y
 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-
-Enter a command: 
+Turn: 0
+ 9 [*][*][*][*][*][*][*][*][*][*]
+ 8 [*][*][*][*][*][*][*][*][*][*]
+ 7 [*][*][*][*][*][*][*][*][*][*]
+ 6 [*][*][*][*][*][*][*][*][*][*]
+ 5 [*][*][*][*][*][*][*][*][*][*]
+ 4 [*][*][*][*][*][*][*][*][*][*]
+ 3 [*][*][*][*][*][*][*][*][*][*]
+ 2 [*][*][*][*][*][*][*][*][*][*]
+ 1 [*][*][*][*][*][*][*][*][*][*]
+ 0 [*][*][*][*][*][*][*][*][*][*]
+    0  1  2  3  4  5  6  7  8  9  
+Enter a command:  
 ```
 
 ### Help Command
@@ -136,16 +137,18 @@ will be updated in the next release). A basic example of a reveal is shown below
 ``` console
 Enter a command: r 0 0
 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-1 * * * * * * * * *
+Turn: 1
+ 9 [*][*][*][*][*][*][*][*][*][*]
+ 8 [*][*][*][*][*][*][*][*][*][*]
+ 7 [*][*][*][*][*][*][*][*][*][*]
+ 6 [*][*][*][*][*][*][*][*][*][*]
+ 5 [*][*][*][*][*][*][*][*][*][*]
+ 4 [*][*][*][*][*][*][*][*][*][*]
+ 3 [*][*][*][*][*][*][*][*][*][*]
+ 2 [*][*][*][*][*][*][*][*][*][*]
+ 1 [*][*][*][*][*][*][*][*][*][*]
+ 0 [1][*][*][*][*][*][*][*][*][*]
+    0  1  2  3  4  5  6  7  8  9 
 ```
 As shown above, the tile in row 0, column 0 was revealed and revealed that there is one mine in
 an adjacent tile, including diagnols. The reveal function is currently not recursive, meaning
@@ -154,16 +157,18 @@ more tiles with no adjacent mines. An example is shown below.
 ``` console
 Enter a command: r 2 1
 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* 0 * * * * * * * * 
-* * * * * * * * * * 
-1 * * * * * * * * *
+Turn: 2
+ 9 [*][*][*][*][*][*][*][*][*][*]
+ 8 [*][*][*][*][*][*][*][*][*][*]
+ 7 [*][*][*][*][*][*][*][*][*][*]
+ 6 [*][*][*][*][*][*][*][*][*][*]
+ 5 [*][*][*][*][*][*][*][*][*][*]
+ 4 [*][*][*][*][*][*][*][*][*][*]
+ 3 [*][*][*][*][*][*][*][*][*][*]
+ 2 [*][0][*][*][*][*][*][*][*][*]
+ 1 [*][*][*][*][*][*][*][*][*][*]
+ 0 [1][*][*][*][*][*][*][*][*][*]
+    0  1  2  3  4  5  6  7  8  9  
 ```
 
 ### Flag
@@ -172,46 +177,50 @@ all mines must be flagged but no additional flags must be present. This means, i
 will need 20 flags to win. All tiles needing to be revealed is NOT a requirement to win. This means
 the board below IS a valid win condition.
 ``` console
-F * * * * * * * * F 
-* * F F * * * * * * 
-F * * * * F * * * F 
-* * * F F * * * * * 
-* * * * F * * * * F 
-F * * * * * * * * * 
-* * * * * * F * * * 
-* * F * * * * * * * 
-* F F * * * * * * F 
-* * * F F * * * F * 
+ 9 [F][*][*][*][*][*][*][*][*][F]
+ 8 [*][*][F][F][*][*][*][*][*][*]
+ 7 [F][*][*][*][*][F][*][*][*][F]
+ 6 [*][*][*][F][F][*][*][*][*][*]
+ 5 [*][*][*][*][F][*][*][*][*][F]
+ 4 [F][*][*][*][*][*][*][*][*][*]
+ 3 [*][*][*][*][*][*][F][*][*][*]
+ 2 [*][*][F][*][*][*][*][*][*][*]
+ 1 [*][F][F][*][*][*][*][*][*][F]
+ 0 [*][*][*][F][F][*][*][*][F][*]
+    0  1  2  3  4  5  6  7  8  9
 ```
 However, this is NOT a valid win condition as there are 21 flags. Tile (0,0) is flagged here unlike
 the last output.
 ``` console
-F * * * * * * * * F 
-* * F F * * * * * * 
-F * * * * F * * * F 
-* * * F F * * * * * 
-* * * * F * * * * F 
-F * * * * * * * * * 
-* * * * * * F * * * 
-* * F * * * * * * * 
-* F F * * * * * * F 
-F * * F F * * * F * 
+ 9 [F][*][*][*][*][*][*][*][*][F]
+ 8 [*][*][F][F][*][*][*][*][*][*]
+ 7 [F][*][*][*][*][F][*][*][*][F]
+ 6 [*][*][*][F][F][*][*][*][*][*]
+ 5 [*][*][*][*][F][*][*][*][*][F]
+ 4 [F][*][*][*][*][*][*][*][*][*]
+ 3 [*][*][*][*][*][*][F][*][*][*]
+ 2 [*][*][F][*][*][*][*][*][*][*]
+ 1 [*][F][F][*][*][*][*][*][*][F]
+ 0 [F][*][*][F][F][*][*][*][F][*]
+    0  1  2  3  4  5  6  7  8  9
 ```
 The flag command works exactly like the reveal function, being used as followed. Both f and flag is valid
 command syntax.
 ``` console
 Enter a command: f 1 1
 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* F * * * * * * * * 
-* * * * * * * * * *
+Turn: 1
+ 9 [*][*][*][*][*][*][*][*][*][*]
+ 8 [*][*][*][*][*][*][*][*][*][*]
+ 7 [*][*][*][*][*][*][*][*][*][*]
+ 6 [*][*][*][*][*][*][*][*][*][*]
+ 5 [*][*][*][*][*][*][*][*][*][*]
+ 4 [*][*][*][*][*][*][*][*][*][*]
+ 3 [*][*][*][*][*][*][*][*][*][*]
+ 2 [*][*][*][*][*][*][*][*][*][*]
+ 1 [*][F][*][*][*][*][*][*][*][*]
+ 0 [*][*][*][*][*][*][*][*][*][*]
+    0  1  2  3  4  5  6  7  8  9
 ```
 
 ### Guess
@@ -220,16 +229,18 @@ and column number are also required to run the command. The output will look lik
 ``` console
 Enter a command: g 1 1
 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* * * * * * * * * * 
-* ? * * * * * * * * 
-* * * * * * * * * *
+Turn: 1
+ 9 [*][*][*][*][*][*][*][*][*][*]
+ 8 [*][*][*][*][*][*][*][*][*][*]
+ 7 [*][*][*][*][*][*][*][*][*][*]
+ 6 [*][*][*][*][*][*][*][*][*][*]
+ 5 [*][*][*][*][*][*][*][*][*][*]
+ 4 [*][*][*][*][*][*][*][*][*][*]
+ 3 [*][*][*][*][*][*][*][*][*][*]
+ 2 [*][*][*][*][*][*][*][*][*][*]
+ 1 [*][?][*][*][*][*][*][*][*][*]
+ 0 [*][*][*][*][*][*][*][*][*][*]
+    0  1  2  3  4  5  6  7  8  9
 ```
 
 ### No Fog
@@ -238,16 +249,18 @@ on the board for one board print. The command and output is shown below.
 ``` console
 Enter a command: noFog
 
-@ * * * * * * * * @ 
-* * @ @ * * * * * * 
-@ * * * * @ * * * @ 
-* * * @ @ * * * * * 
-* * * * @ * * * * @ 
-@ * * * * * * * * * 
-* * * * * * @ * * * 
-* * @ * * * * * * * 
-* @ @ * * * * * * @ 
-* * * @ @ * * * @ * 
+Turn: 1
+ 9 [*][*][*][*][*][*][*][*][*][*]
+ 8 [*][*][*][@][*][*][@][*][*][@]
+ 7 [*][@][@][*][*][*][*][*][*][*]
+ 6 [*][*][*][*][*][*][@][*][*][@]
+ 5 [*][*][*][*][*][*][*][*][*][*]
+ 4 [@][*][*][*][*][*][*][@][*][@]
+ 3 [*][@][@][*][*][*][*][*][*][*]
+ 2 [@][@][*][*][*][*][*][*][*][@]
+ 1 [*][*][*][*][*][*][*][*][*][@]
+ 0 [*][@][*][*][@][*][@][*][@][*]
+    0  1  2  3  4  5  6  7  8  9   
 ```
 
 ## Roadmap
@@ -271,6 +284,7 @@ Enter a command: noFog
   * Quit game
 
 ### Milestone 0.3
+***RELEASED ON 28 NOV 2020***
 * Add nicer looking board
 * Add point system
 * Print score at end of game
@@ -284,6 +298,10 @@ Enter a command: noFog
 
 ### Milestone 0.6
 * Recursive Reveal
+
+### Milestone 0.7
+* Cleanup Formatting
+* Make final style choices
 
 <hr/>
 

@@ -291,13 +291,22 @@ Turn: 1
 
 ### Milestone 0.4
 * Add game menu for custom sizes
-* Add highscores to menu
-
-### Milestone 0.5
+* ~~Add highscores to menu~~ ***MOVED DOWN TO MILESTONE 0.6***
 * Add custom difficulty options
 
-### Milestone 0.6
+### ~~Milestone 0.5~~
+* ~~Add custom difficulty options~~ ***MOVED UP TO MILESTONE 0.4***
+
+###  Milestone 0.5
+***REALLOCATED FROM MILESTONE 0.6***
 * Recursive Reveal
+
+### Minestone 0.6
+***REALLOCATED FROM MILESTONE 0.7***
+* ~~Cleanup Formatting~~ ***MOVED DOWN TO MILESTONE 0.7***
+* ~~Make final style choices~~ ***MOVED DOWN TO MILESTONE 0.7***
+* Add new scoring system (Maybe based on time)
+* Add highscores to menu
 
 ### Milestone 0.7
 * Cleanup Formatting

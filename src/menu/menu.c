@@ -20,6 +20,7 @@
 #include "../../inc/board/board.h"
 #include "../../inc/game/game.h"
 #include "../../inc/game/command_processor.h"
+#include "../../inc/menu/menu.h"
 
 /**
  * In current implementation with simple yes/no menu, this
@@ -40,12 +41,42 @@ bool menu__take_input() {
       strncmp(input, "No", 2) == 0 || strncmp(input, "no", 2) == 0) {
     return false;
   } else {
-    game__build_game(&game);
-    game__play(&game);
+    menu__build_board(&game);
     return true;
   } // if
   
 } // menu__take_input
+
+/**
+ * This function takes in a game and asks the user for height, width and density
+ * paramaters. Then it builds the game.
+ *
+ * @param game the game to be built
+ * 
+ * @return true if runs; false otherwise
+ */
+bool menu__build_board(struct Game *game) {
+  char input[5];
+
+  // TODO: Error Check Inputs
+  printf("\nEnter Height (Max 24): ");
+  fgets(input, 5, stdin);
+  int height = atoi(input);
+  
+  printf("\nEnter Width (Max 32): ");
+  fgets(input, 5, stdin);
+  int width = atoi(input);
+  
+  printf("\nEnter Mines (Up to 26 percent of board area, max 200): ");
+  fgets(input, 5, stdin);
+  int num_mines = atoi(input);
+  
+  game__build_game(width, height, num_mines, game);
+  game__play(game);
+
+  return true;
+  
+} // menu__build_baord
 
 /**
  * This function prints the welcome screen for the game.

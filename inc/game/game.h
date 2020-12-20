@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../board/board.h"
-// #include "command_processor.h"
 
 struct Game {
   struct Board board;

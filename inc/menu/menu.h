@@ -14,6 +14,7 @@
 #include "../board/board.h"
 
 bool menu__take_input();
+bool menu__build_board(struct Game *game);
 void menu__print_welcome();
 
 #endif // MENU_H

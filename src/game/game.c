@@ -68,15 +68,14 @@ void game__print_loss() {
  * 
  * @param game the game to have it's board built
  */
-void game__build_game(struct Game *game) {
-  // TODO: Take input for board size
+void game__build_game(int x, int y, int mines, struct Game *game) {
   game__set_end(false, game);
-  board__build_array(10, 10, &game->board);
+  board__build_array(x, y, &game->board);
   
   /* Place mines randomly */
   srand(time(0)); // use time for better randomness
   
-  for (int i = 0; i < 20; i++) { // TODO: Replace < 20 with density calculation
+  for (int i = 0; i < mines; i++) { 
     bool placed = false;
     while (!placed) {
       int x = rand() % board__get_x(&game->board);
@@ -85,11 +84,10 @@ void game__build_game(struct Game *game) {
     } // while
   } // for
 
+  game__set_flags(mines, game);
   board__set_no_fog(false, &game->board);
-
-  game->turns = 0;
   
-  // TODO: Place mines based on settings
+  game->turns = 0;
 } // game__build_game
 
 /**
@@ -179,8 +177,7 @@ void game__play(struct Game *game) {
     game__take_game_input(game);
 
     if (board__get_num_mines(&game->board) == 0 &&
-        board__get_num_flags(&game->board) == 20) {
-      // TODO: Change to check for number of flags for original num of mines
+        board__get_num_flags(&game->board) == game__get_flags(game)) {
       game__print_win(game);
       game__set_end(true, game);
     } // if
@@ -213,3 +210,26 @@ void game__set_end(bool end, struct Game *game) {
 bool game__get_end(struct Game *game) {
   return game->end;
 } // game__get_end
+
+/**
+ * This function takes an int and a game and sets
+ * the number of flags needed in the game.
+ *
+ * @param flags the number of flags
+ * @param game the game to be set
+ */
+void game__set_flags(int flags, struct Game *game) {
+  game->flags_needed = flags;
+} // game__set_flags
+
+/**
+ * This function takes a game and returns the game's
+ * flags needed.
+ *
+ * @param game the game to get the flags of
+ *
+ * @return the number of flags needed
+ */
+int game__get_flags(struct Game *game) {
+  return game->flags_needed;
+} // game__get_flags

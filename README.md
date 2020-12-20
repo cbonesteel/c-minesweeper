@@ -1,7 +1,7 @@
 # c-minesweeper
 
 ![Project Status: In Development](https://img.shields.io/badge/Project%20Status-In%20Development-brightgreen)
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-brightgreen)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-brightgreen)
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-brightgreen)
 
 ## Table of Contents
@@ -11,7 +11,7 @@
 * [Dependencies](https://github.com/cbonesteel/c-minesweeper#dependencies)
 * [Installing and Running](https://github.com/cbonesteel/c-minesweeper#installation-and-running)
 
-[How to Play (In Release 0.3.0)](https://github.com/cbonesteel/c-minesweeper#how-to-play-in-release-021)
+[How to Play (In Release 0.4.0)](https://github.com/cbonesteel/c-minesweeper#how-to-play-in-release-040)
 * [Starting a game](https://github.com/cbonesteel/c-minesweeper#starting-a-game)
 * [Help Command](https://github.com/cbonesteel/c-minesweeper#help-command)
 * [Reveal](https://github.com/cbonesteel/c-minesweeper#reveal)
@@ -84,21 +84,29 @@ system:c-minesweeper user$ make clean
 rm -rf build minesweeper-game
 ```
 
-## How to Play (In Release 0.3.0)
+## How To Play (In Release 0.4.0)
 
 ### Starting a game
-When you run the game you will be met with a simple welcome screen. To start the game
-simply enter Y/Yes to start a 10x10 game with 20 mines. The game will then print the board
-as shown below.
+When you start the game, you will be met with a welcome screen asking if you
+would like to start a game. Entering Y will take you to the game options, entering
+N closes the game. After entering Y, you can enter your gameboards height and width
+as well as the number of mines. You may have up to 26% of the boards area covered
+in mines, but remember, more mines equals a harder game.
 ``` console
     __  ____           _____                                  
    /  |/  (_)___  ___ / ___/      _____  ___  ____  ___  _____
   / /|_/ / / __ \/ _ \\__ \ | /| / / _ \/ _ \/ __ \/ _ \/ ___/
  / /  / / / / / /  __/__/ / |/ |/ /  __/  __/ /_/ /  __/ /    
 /_/  /_/_/_/ /_/\___/____/|__/|__/\___/\___/ .___/\___/_/     
-                              coded in C  /_/ v. 0.3.0
+                              coded in C  /_/ v. 0.4.0
 
 Start New Game? Y/N: Y
+
+Enter Height (Max 24): 10
+
+Enter Width (Max 32): 10
+
+Enter Mines (Up to 26 percent of board area, max 200): 20
 
 Turn: 0
  9 [*][*][*][*][*][*][*][*][*][*]
@@ -112,7 +120,7 @@ Turn: 0
  1 [*][*][*][*][*][*][*][*][*][*]
  0 [*][*][*][*][*][*][*][*][*][*]
     0  1  2  3  4  5  6  7  8  9  
-Enter a command:  
+Enter a command:   
 ```
 
 ### Help Command
@@ -290,21 +298,14 @@ Turn: 1
 * Print score at end of game
 
 ### Milestone 0.4
+***RELEASED ON 20 DEC 2020***
 * Add game menu for custom sizes
-* ~~Add highscores to menu~~ ***MOVED DOWN TO MILESTONE 0.6***
 * Add custom difficulty options
 
-### ~~Milestone 0.5~~
-* ~~Add custom difficulty options~~ ***MOVED UP TO MILESTONE 0.4***
-
 ###  Milestone 0.5
-***REALLOCATED FROM MILESTONE 0.6***
 * Recursive Reveal
 
 ### Minestone 0.6
-***REALLOCATED FROM MILESTONE 0.7***
-* ~~Cleanup Formatting~~ ***MOVED DOWN TO MILESTONE 0.7***
-* ~~Make final style choices~~ ***MOVED DOWN TO MILESTONE 0.7***
 * Add new scoring system (Maybe based on time)
 * Add highscores to menu
 

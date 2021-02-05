@@ -1,7 +1,7 @@
 # c-minesweeper
 
 ![Project Status: In Development](https://img.shields.io/badge/Project%20Status-In%20Development-brightgreen)
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-brightgreen)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-brightgreen)
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-brightgreen)
 
 ## Table of Contents
@@ -11,7 +11,7 @@
 * [Dependencies](https://github.com/cbonesteel/c-minesweeper#dependencies)
 * [Installing and Running](https://github.com/cbonesteel/c-minesweeper#installation-and-running)
 
-[How to Play (In Release 0.4.0)](https://github.com/cbonesteel/c-minesweeper#how-to-play-in-release-040)
+[How to Play (In Release 0.5.0)](https://github.com/cbonesteel/c-minesweeper#how-to-play-in-release-050)
 * [Starting a game](https://github.com/cbonesteel/c-minesweeper#starting-a-game)
 * [Help Command](https://github.com/cbonesteel/c-minesweeper#help-command)
 * [Reveal](https://github.com/cbonesteel/c-minesweeper#reveal)
@@ -84,7 +84,7 @@ system:c-minesweeper user$ make clean
 rm -rf build minesweeper-game
 ```
 
-## How To Play (In Release 0.4.0)
+## How To Play (In Release 0.5.0)
 
 ### Starting a game
 When you start the game, you will be met with a welcome screen asking if you
@@ -98,7 +98,7 @@ in mines, but remember, more mines equals a harder game.
   / /|_/ / / __ \/ _ \\__ \ | /| / / _ \/ _ \/ __ \/ _ \/ ___/
  / /  / / / / / /  __/__/ / |/ |/ /  __/  __/ /_/ /  __/ /    
 /_/  /_/_/_/ /_/\___/____/|__/|__/\___/\___/ .___/\___/_/     
-                              coded in C  /_/ v. 0.4.0
+                              coded in C  /_/ v. 0.5.0
 
 Start New Game? Y/N: Y
 
@@ -159,9 +159,9 @@ Turn: 1
     0  1  2  3  4  5  6  7  8  9 
 ```
 As shown above, the tile in row 0, column 0 was revealed and revealed that there is one mine in
-an adjacent tile, including diagnols. The reveal function is currently not recursive, meaning
-revealing a tile with no adjacent mines will not reveal all tiles around it until there are no
-more tiles with no adjacent mines. An example is shown below.
+an adjacent tile, including diagnols. The reveal function is recursive, meaning if you reveal a tile
+with 0 mines adjacent, it will reveal all tiles around it until there are no more tiles with no adjacent
+mines. An example is shown below, where 2 1 is revealed and 0 0 is already revealed.
 ``` console
 Enter a command: r 2 1
 
@@ -170,11 +170,11 @@ Turn: 2
  8 [*][*][*][*][*][*][*][*][*][*]
  7 [*][*][*][*][*][*][*][*][*][*]
  6 [*][*][*][*][*][*][*][*][*][*]
- 5 [*][*][*][*][*][*][*][*][*][*]
- 4 [*][*][*][*][*][*][*][*][*][*]
- 3 [*][*][*][*][*][*][*][*][*][*]
- 2 [*][0][*][*][*][*][*][*][*][*]
- 1 [*][*][*][*][*][*][*][*][*][*]
+ 5 [1][3][*][*][*][*][*][*][*][*]
+ 4 [0][1][*][*][*][*][*][*][*][*]
+ 3 [0][2][1][*][*][*][*][*][*][*]
+ 2 [0][0][1][*][*][*][*][*][*][*]
+ 1 [1][1][1][*][*][*][*][*][*][*]
  0 [1][*][*][*][*][*][*][*][*][*]
     0  1  2  3  4  5  6  7  8  9  
 ```
@@ -303,6 +303,7 @@ Turn: 1
 * Add custom difficulty options
 
 ###  Milestone 0.5
+***RELEASED ON 05 FEB 2021***
 * Recursive Reveal
 
 ### Minestone 0.6

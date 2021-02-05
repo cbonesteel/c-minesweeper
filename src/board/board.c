@@ -250,13 +250,52 @@ bool board__flag(int x, int y, struct Board *board) {
  */
 bool board__reveal(int x, int y, struct Board *board) {
   if (board->reveal_pointer[x][y] == false) {
+    if (x >= board__get_x(board)) {
+      return false;
+    } else if (y >= board__get_y(board)) {
+      return false;
+    } // if
+
     if (board->board_pointer[x][y] == 'F') {
       board->board_num_flags--;
     } // if
     board->board_pointer[x][y] = board__count_num_adjacent(x, y, board) + '0';
     board->reveal_pointer[x][y] = true;
-    
-    // TODO: Make Recursive Reveal if Needed
+
+    if (board__count_num_adjacent(x, y, board) == 0) {
+      bool x_left = x - 1 >= 0;
+      bool x_right = x + 1 < board__get_x(board);
+      bool y_top = y + 1 < board__get_y(board);
+      bool y_bottom = y - 1 >= 0;
+      // reveal right column
+      if (x_right) {
+        if (y_top) {
+          board__reveal(x + 1, y + 1, board);
+        } // if
+        if (y_bottom) {
+          board__reveal(x + 1, y - 1, board);
+        } // if
+        board__reveal(x + 1, y, board);
+      } // if
+      // reveal left column
+      if (x_left) {
+        if (y_top) {
+          board__reveal(x - 1, y + 1, board);
+        } // if
+        if (y_bottom) {
+          board__reveal(x - 1, y - 1, board);
+        } // if
+        board__reveal(x - 1, y, board);
+      } // if
+      // reveal tile above
+      if (y_top) {
+        board__reveal(x, y + 1, board);
+      } // if
+      // reveal tile below
+      if (y_bottom) {
+        board__reveal(x, y - 1, board);
+      } // if
+    } // if
     
     return true;
   } else {

@@ -59,7 +59,7 @@ bool command_processor__reveal(int x, int y, struct Game *game) {
 
   /* If all prior checks pass, reveal square*/
   board__reveal(x, y, &game->board);
-
+  
   return true;
 } // command_processor__reveal
 

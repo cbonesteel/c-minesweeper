@@ -27,6 +27,9 @@
 * [Milestone 0.5](https://github.com/cbonesteel/c-minesweeper#milestone-05)
 * [Milestone 0.6](https://github.com/cbonesteel/c-minesweeper#milestone-06)
 * [Milestone 0.7](https://github.com/cbonesteel/c-minesweeper#milestone-07)
+* [Milestone 0.8](https://github.com/cbonesteel/c-minesweeper#milestone-08)
+* [Milestone 0.9](https://github.com/cbonesteel/c-minesweeper#milestone-09)
+* [Milestone 1.0](https://github.com/cbonesteel/c-minesweeper#milestone-10)
 
 ## Project Description
 This project is a personal programming project with a focus on learning how to use C. The

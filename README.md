@@ -314,6 +314,19 @@ Turn: 1
 * Cleanup Formatting
 * Make final style choices
 
+### Milestone 0.8
+* Add GUI Prototype
+
+### Milestone 0.9
+* Make final GUI style choices
+
+### Milestone 1.0
+* Check program for bugs
+* Add any last minute features
+* RELEASE FIRST FULL VERSION
+
+###
+
 <hr/>
 
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)

@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../board/board.h"
 
 struct Game {
@@ -16,6 +17,8 @@ struct Game {
   bool end;
   int turns;
   int flags_needed;
+  time_t start_time;
+  time_t end_time;
 }; // Game
 
 void game__print_win(struct Game *game);
@@ -29,5 +32,11 @@ void game__set_end(bool end, struct Game *game);
 bool game__get_end(struct Game *game);
 void game__set_flags(int flags, struct Game *game);
 int game__get_flags(struct Game *game);
+void game__set_start_time(struct Game *game);
+time_t game__get_start_time(struct Game *game);
+void game__set_end_time(struct Game *game);
+time_t game__get_end_time(struct Game *game);
+
+
 
 #endif // GAME_H

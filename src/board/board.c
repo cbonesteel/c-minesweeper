@@ -86,6 +86,9 @@ bool board__build_array(int width, int height, struct Board *board) {
   board__set_x(height, board);
   board__set_y(width, board);
 
+  board->board_num_mines = 0;
+  board->board_num_flags = 0;
+  
   return true;
 } // board__build_array
 

@@ -35,11 +35,13 @@ void game__print_win(struct Game *game) {
     printf("%s", buff );
   } // for
 
-  double board_size = board__get_x(&game->board) * board__get_y(&game->board);
-  double turns_count = game->turns;
+  /* double board_size = board__get_x(&game->board) * board__get_y(&game->board); */
+  /* double turns_count = game->turns; */
   
-  double score = (board_size / turns_count) * 100.0;
+  /* double score = (board_size / turns_count) * 100.0; */
 
+  double score = difftime(game__get_end_time(game), game__get_start_time(game));
+  
   printf("%f", score);
 
   fclose(fp);
@@ -161,6 +163,7 @@ void game__take_game_input(struct Game *game) {
  * @param game the game to be played
  */
 void game__play(struct Game *game) {
+  game__set_start_time(game);
   while (!game__get_end(game)) {
     printf("\n");
 
@@ -175,9 +178,10 @@ void game__play(struct Game *game) {
     printf("\n");
 
     game__take_game_input(game);
-
+    
     if (board__get_num_mines(&game->board) == 0 &&
         board__get_num_flags(&game->board) == game__get_flags(game)) {
+      game__set_end_time(game);
       game__print_win(game);
       game__set_end(true, game);
     } // if
@@ -233,3 +237,47 @@ void game__set_flags(int flags, struct Game *game) {
 int game__get_flags(struct Game *game) {
   return game->flags_needed;
 } // game__get_flags
+
+/**
+ * This function takes a game and sets the game's
+ * start time based on the system time.
+ *
+ * @param game the game to set the start time of
+ */
+void game__set_start_time(struct Game *game) {
+  game->start_time = time(NULL);
+} // game__set_start_time
+
+/**
+ * This function takes a game and returns the game's
+ * start time.
+ *
+ * @param game the game to get the start time of
+ *
+ * @return the start time
+ */
+time_t game__get_start_time(struct Game *game) {
+  return game->start_time;
+} // game__get_start_time
+
+/**
+ * This function takes a game and sets the game's
+ * end time based on the system time.
+ *
+ * @param game the game to set the end time of
+ */
+void game__set_end_time(struct Game *game) {
+  game->end_time = time(NULL);
+} // game__set_end_time
+
+/**
+ * This function takes a game and returns the game's
+ * end time.
+ *
+ * @param game the game to get the end time of
+ *
+ * @return the end time
+ */
+time_t game__get_end_time(struct Game *game) {
+  return game->end_time;
+} // game__get_end_time

@@ -52,6 +52,7 @@ bool command_processor__reveal(int x, int y, struct Game *game) {
 
   /* Check if there is a mine at the spot to be revealed */
   if (board__contains_mine(x, y, &game->board) == true) {
+    game__set_end_time(game);
     game__set_end(true, game);
     game__print_loss();
     return false;

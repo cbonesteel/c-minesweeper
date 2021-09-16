@@ -1,6 +1,6 @@
 # c-minesweeper
 
-![Project Status: In Development](https://img.shields.io/badge/Project%20Status-In%20Development-brightgreen)
+![Project Status: Indefinitely Delayed](https://img.shields.io/badge/Project%20Status-Indefinitely%20Delayed-red)
 ![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-brightgreen)
 ![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-brightgreen)
 
